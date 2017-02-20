@@ -34,7 +34,7 @@ def evaluate(individual):
 
 def mCX(ind1_, ind2_):
     ind1, ind2 = ind1_[0], ind2_[0]
-    cX_point = len(ind1)/2
+    cX_point = random.randint(1,len(ind1))#len(ind1)/2
     ind1[:cX_point], ind2[:cX_point] = ind2[:cX_point].copy(), ind1[:cX_point].copy()
     return ind1_, ind2_
     
@@ -58,7 +58,7 @@ stats.register("max", np.max)
 
 def main():
     pop = toolbox.population(n=100)
-    CXPB, MUTPB, NGEN = 0.9, 0.2, 5000
+    CXPB, MUTPB, NGEN = 0.9, 0.1, 5000
 
     # Evaluate the entire population
     fitnesses = map(toolbox.evaluate, pop)
