@@ -6,13 +6,16 @@ logger = logging.getLogger(__file__.split('/')[-1])
 logger.setLevel(logging.INFO)
 
 def frobeniusNorm(mat1, mat2):
-    dist = 0
-    for i in xrange(len(mat1)):
-        for j in xrange(len(mat1[0])):
-            dist += pow(mat1[i][j] - mat2[i][j], 2)
-    dist = np.sqrt(dist)
-    return dist
-
+    #dist = 0
+    #for i in xrange(len(mat1)):
+    #    for j in xrange(len(mat1[0])):
+    #        dist += pow(mat1[i][j] - mat2[i][j], 2)
+    #dist = np.sqrt(dist)
+    #return dist
+    dis = mat1 - mat2
+    fit = np.linalg.norm(dis)
+    return fit
+      
 def stopLearning(minError, currentError):
     if currentError <= minError:
         return True
@@ -168,12 +171,12 @@ if __name__ == "__main__":
     #     [0,0,0,0,0,0,0,1],
     #     [1,0,0,1,0,1,1,0]]
     mat = [[0,1,0,1,0],
-        [1,0,1,0,1],
-        [0,1,0,0,0],
-        [1,0,0,0,1],
-        [0,1,0,1,0]]
+           [1,0,1,0,1],
+           [0,1,0,0,0],
+           [1,0,0,0,1],
+           [0,1,0,1,0]]
     #mat = np.random.randint(0, 2, (50, 50))
     #mat = (mat+mat.T)/2
     
     #w,h = nmf_additive(mat, 5, 1000, 0.001)
-    w = nmf_additive_sym(mat, len(mat[0])*2/3, 1000, 0.001)
+    w = nmf_additive_sym(mat, len(mat[0])*1/3, 1000, 0.001)

@@ -2,16 +2,19 @@ from deap import base, creator
 import random
 from deap import tools
 import numpy as np
+import utils
 
-V = [[0,1,0,1,0],
-     [1,0,1,0,1],
-     [0,1,0,0,0],
-     [1,0,0,0,1],
-     [0,1,0,1,0]]
+#V = [[0,1,0,1,0],
+#     [1,0,1,0,1],
+#     [0,1,0,0,0],
+#     [1,0,0,0,1],
+#     [0,1,0,1,0]]
 
 #V = [[0,1,0],
 #     [1,0,1],
 #     [0,1,0]]
+
+V = utils.read_matrix_edgeList('../resources/facebook_4039N.txt')
 
 creator.create("FitnessMin", base.Fitness, weights=(-1.0,))
 creator.create("Individual", np.ndarray, fitness=creator.FitnessMin)
@@ -19,7 +22,7 @@ creator.create("Individual", np.ndarray, fitness=creator.FitnessMin)
 IND_SIZE = 1#len(V), len(V[0])
 
 def genIndividual():
-    return np.random.rand(len(V), len(V[0])*2/3)
+    return np.random.rand(len(V), len(V[0])*1/3)
 
 toolbox = base.Toolbox()
 toolbox.register("attribute", genIndividual)
@@ -59,7 +62,7 @@ stats.register("max", np.max)
 
 def main():
     pop = toolbox.population(n=100)
-    CXPB, MUTPB, NGEN = 0.9, 0.1, 10000
+    CXPB, MUTPB, NGEN = 0.9, 0.1, 1000
 
     # Evaluate the entire population
     fitnesses = map(toolbox.evaluate, pop)
