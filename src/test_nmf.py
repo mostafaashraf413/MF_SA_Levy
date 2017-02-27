@@ -19,7 +19,7 @@ creator.create("Individual", np.ndarray, fitness=creator.FitnessMin)
 IND_SIZE = 1#len(V), len(V[0])
 
 def genIndividual():
-    return np.random.rand(len(V), len(V[0]))
+    return np.random.rand(len(V), len(V[0])*2/3)
 
 toolbox = base.Toolbox()
 toolbox.register("attribute", genIndividual)
@@ -27,7 +27,8 @@ toolbox.register("individual", tools.initRepeat, creator.Individual, toolbox.att
 toolbox.register("population", tools.initRepeat, list, toolbox.individual)
 
 def evaluate(individual):
-    V_ = individual.dot(individual.T)
+    ind_ = individual[0]
+    V_ = ind_.dot(ind_.T)
     dis = V-V_
     fit = np.linalg.norm(dis)
     return fit,
@@ -58,7 +59,7 @@ stats.register("max", np.max)
 
 def main():
     pop = toolbox.population(n=100)
-    CXPB, MUTPB, NGEN = 0.9, 0.1, 5000
+    CXPB, MUTPB, NGEN = 0.9, 0.1, 10000
 
     # Evaluate the entire population
     fitnesses = map(toolbox.evaluate, pop)
