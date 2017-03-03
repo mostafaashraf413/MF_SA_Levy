@@ -1,9 +1,10 @@
 # -*- coding: utf-8 -*-
 import numpy as np
 import logging
+import utils
 
-logger = logging.getLogger(__file__.split('/')[-1])
-logger.setLevel(logging.INFO)
+#logger = logging.getLogger(__file__.split('/')[-1])
+#logger.setLevel(logging.INFO)
 
 def frobeniusNorm(mat1, mat2):
     #dist = 0
@@ -135,7 +136,8 @@ def nmf_additive_sym(V, nLatentFeatures = 10, nSteps = 50, beta = 0.005, minErro
     V = np.array(V)
     W = np.random.rand(len(V), nLatentFeatures)
     
-    logger.info('nmf_additive symmetric has started:')
+    #logger.info('nmf_additive symmetric has started:')
+    print 'nmf_additive symmetric has started:'
     for step in xrange(nSteps):
         
         ##### for left matrix (W)
@@ -143,18 +145,21 @@ def nmf_additive_sym(V, nLatentFeatures = 10, nSteps = 50, beta = 0.005, minErro
         WWW  = W.dot(np.dot(W.T, W))
     
         for i in xrange(len(V)): # iterate over rows
-            for j in xrange(len(V[0])): # iterate over columns  
-                for l in xrange(nLatentFeatures): # iterate over latent dimensions
-                    new_Wij = W[i][l] + beta * (VW[i][l] - WWW[i][l])
-                    if new_Wij >= 0: W[i][l] = new_Wij
+            #for j in xrange(len(V[0])): # iterate over columns  
+            for l in xrange(nLatentFeatures): # iterate over latent dimensions
+                #print i,' ',l
+                new_Wij = W[i][l] + beta * (VW[i][l] - WWW[i][l])
+                if new_Wij >= 0: W[i][l] = new_Wij
          
         #calculate the distance
         dist = frobeniusNorm(V, W.dot(W.T))
-        logger.info('iteration #%f, error distane = %f'%(step, dist))
+        #logger.info('iteration #%d, error distane = %f'%(step, dist))
+        print 'iteration #%d, error distane = %f'%(step, dist)
         #calculate the error to stop learning 
         if stopLearning(minError, dist):
             break
-    logger.info('factorization is done!')
+    #logger.info('factorization is done!')
+    print 'factorization is done!'
         
     return W
         
@@ -178,5 +183,7 @@ if __name__ == "__main__":
     #mat = np.random.randint(0, 2, (50, 50))
     #mat = (mat+mat.T)/2
     
+    #mat = utils.read_matrix_edgeList('../resources/facebook_4039N.txt')
+    
     #w,h = nmf_additive(mat, 5, 1000, 0.001)
-    w = nmf_additive_sym(mat, len(mat[0])*1/3, 1000, 0.001)
+    w = nmf_additive_sym(mat, 100, 10000, 0.1e-5)
