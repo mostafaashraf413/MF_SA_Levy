@@ -1,0 +1,4 @@
+- double crossover better than single crossover.
+- for future work:
+    - make r_dim as variable to be optimized.
+    - use additiveRule as a local search.

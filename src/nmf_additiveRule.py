@@ -175,15 +175,17 @@ if __name__ == "__main__":
     #     [0,0,0,0,1,0,0,1],
     #     [0,0,0,0,0,0,0,1],
     #     [1,0,0,1,0,1,1,0]]
-    mat = [[0,1,0,1,0],
-           [1,0,1,0,1],
-           [0,1,0,0,0],
-           [1,0,0,0,1],
-           [0,1,0,1,0]]
+    #mat = [[0,1,0,1,0],
+    #       [1,0,1,0,1],
+    #       [0,1,0,0,0],
+    #       [1,0,0,0,1],
+    #       [0,1,0,1,0]]
     #mat = np.random.randint(0, 2, (50, 50))
     #mat = (mat+mat.T)/2
     
-    #mat = utils.read_matrix_edgeList('../resources/facebook_4039N.txt')
+    mat = utils.read_matrix_edgeList('../resources/facebook_4039N.txt')
     
     #w,h = nmf_additive(mat, 5, 1000, 0.001)
-    w = nmf_additive_sym(mat, 100, 10000, 0.1e-5)
+    r_dim = 50
+    learning_rate = 0.1e-5 #0.1e-2
+    w = nmf_additive_sym(mat, r_dim, 5000, learning_rate)

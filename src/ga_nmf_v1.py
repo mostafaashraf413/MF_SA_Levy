@@ -5,29 +5,31 @@ import numpy as np
 import utils
 import ga_nmf_base as ga
 
-V = [[0,1,0,1,0],
-     [1,0,1,0,1],
-     [0,1,0,0,0],
-     [1,0,0,0,1],
-     [0,1,0,1,0]]
+#V = [[0,1,0,1,0],
+#     [1,0,1,0,1],
+#     [0,1,0,0,0],
+#     [1,0,0,0,1],
+#     [0,1,0,1,0]]
 
 #V = [[0,1,0],
 #     [1,0,1],
 #     [0,1,0]]
 
-#V =[[0,1,0,1,0,0,0,1],
-#        [1,0,1,0,0,0,0,0],
-#        [0,1,0,1,1,0,0,0],
-#        [1,0,1,0,0,0,0,1],
-#        [0,0,1,0,0,1,0,0],
-#        [0,0,0,0,1,0,0,1],
-#        [0,0,0,0,0,0,0,1],
-#        [1,0,0,1,0,1,1,0]]
+V =[[0,1,0,1,0,0,0,1],
+    [1,0,1,0,0,0,0,0],
+    [0,1,0,1,1,0,0,0],
+    [1,0,1,0,0,0,0,1],
+    [0,0,1,0,0,1,0,0],
+    [0,0,0,0,1,0,0,1],
+    [0,0,0,0,0,0,0,1],
+    [1,0,0,1,0,1,1,0]]
 
 #V = utils.read_matrix_edgeList('../resources/facebook_4039N.txt')
 
+r_dim = 5
+
 def genIndividual():
-    return np.random.rand(len(V), 100)
+    return np.random.rand(len(V), r_dim)
     
 def evaluate_ind(individual):
     ind_ = individual[0]
@@ -35,7 +37,7 @@ def evaluate_ind(individual):
     dis = V-V_
     fit = np.linalg.norm(dis)
     return fit,
-
+    
 def mCX(ind1_, ind2_):
     ind1, ind2 = ind1_[0], ind2_[0]
     cX_point = random.randint(1,len(ind1))#len(ind1)/2
