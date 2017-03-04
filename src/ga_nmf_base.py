@@ -11,9 +11,9 @@ stats = tools.Statistics(key=lambda ind: ind.fitness.values)
 stats.register("min", np.min)
 #stats.register("max", np.max)
 
-def run_ga(CXPB = 0.9, MUTPB = 0.2, NGEN = 5000, ind_type = np.ndarray,
+def run_ga(CXPB = 0.9, MUTPB = 0.2, LSPB = 0.5, NGEN = 5000, ind_type = np.ndarray,
            ind_size = 1, pop_size = 100, ind_gen = None, mate = None,
-           mutate = None, select = tools.selTournament, evaluate = None):
+           mutate = None, select = tools.selTournament, evaluate = None, local_search = None):
            
     creator.create("FitnessMin", base.Fitness, weights=(-1.0,))
     creator.create("Individual", ind_type, fitness=creator.FitnessMin)
@@ -27,6 +27,7 @@ def run_ga(CXPB = 0.9, MUTPB = 0.2, NGEN = 5000, ind_type = np.ndarray,
     
     toolbox.register("mate", mate) #tools.cxTwoPoint)
     toolbox.register("mutate", mutate, mu=0, sigma=1, indpb=0.2)#tools.mutGaussian, mu=0, sigma=1, indpb=0.1)
+    toolbox.register("local_search", local_search)
     toolbox.register("select", select, tournsize=3)
     toolbox.register("evaluate", evaluate)
 
@@ -53,6 +54,11 @@ def run_ga(CXPB = 0.9, MUTPB = 0.2, NGEN = 5000, ind_type = np.ndarray,
             if random.random() < MUTPB:
                 toolbox.mutate(mutant)
                 del mutant.fitness.values
+                
+        for indvidual in offspring:
+            if random.random() < LSPB:
+                toolbox.local_search(indvidual)
+                del indvidual.fitness.values
 
         # Evaluate the individuals with an invalid fitness
         invalid_ind = [ind for ind in offspring if not ind.fitness.valid]

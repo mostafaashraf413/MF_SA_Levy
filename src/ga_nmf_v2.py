@@ -58,12 +58,33 @@ def mCX_double(ind1_, ind2_):
     ind1[:,cX_point_1:cX_point_2], ind2[:,cX_point_1:cX_point_2] = ind2[:,cX_point_1:cX_point_2].copy(), ind1[:,cX_point_1:cX_point_2].copy()
     return ind1_, ind2_
     
+def linear_combinaiton_CX(ind1_, ind2_):
+    ind1, ind2 = ind1_[0], ind2_[0]
+    rand1, rand2= random.random(), random.random()
+    rand1_c, rand2_c = 1-rand1, 1-rand2
+    
+    ind1, ind2 = (ind1.copy()*rand1 + ind2.copy()*rand1_c), (ind1.copy()*rand2 + ind2.copy()*rand2_c)
+    return ind1_, ind2_
+    
 def mMut(ind, mu, sigma, indpb):
     rInd = ind[0].reshape(len(ind[0])*len(ind[0][0]))
     tools.mutGaussian(rInd, mu, sigma, indpb)
     return ind
     
-pop = ga.run_ga(pop_size = 50,ind_gen = genIndividual, mate = mCX_double, mutate = mMut, evaluate = evaluate_ind)
+def additiveRule_LS(ind):
+    W = ind[0]
+    VW = V.dot(W)
+    WWW  = W.dot(np.dot(W.T, W))
+    beta = 0.1e-5
+    
+    for i in xrange(len(V)): # iterate over rows
+        for l in xrange(r_dim): # iterate over latent dimensions
+            #print i,' ',l
+            new_Wij = W[i][l] + beta * (VW[i][l] - WWW[i][l])
+            if new_Wij >= 0: W[i][l] = new_Wij
+    return ind
+    
+pop = ga.run_ga(pop_size = 50,ind_gen = genIndividual, mate = linear_combinaiton_CX, mutate = mMut, evaluate = evaluate_ind, local_search = additiveRule_LS)
 
 #print pop
 

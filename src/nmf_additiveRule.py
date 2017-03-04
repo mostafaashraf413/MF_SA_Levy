@@ -145,7 +145,6 @@ def nmf_additive_sym(V, nLatentFeatures = 10, nSteps = 50, beta = 0.005, minErro
         WWW  = W.dot(np.dot(W.T, W))
     
         for i in xrange(len(V)): # iterate over rows
-            #for j in xrange(len(V[0])): # iterate over columns  
             for l in xrange(nLatentFeatures): # iterate over latent dimensions
                 #print i,' ',l
                 new_Wij = W[i][l] + beta * (VW[i][l] - WWW[i][l])
@@ -186,6 +185,6 @@ if __name__ == "__main__":
     mat = utils.read_matrix_edgeList('../resources/facebook_4039N.txt')
     
     #w,h = nmf_additive(mat, 5, 1000, 0.001)
-    r_dim = 50
+    r_dim = 200
     learning_rate = 0.1e-5 #0.1e-2
     w = nmf_additive_sym(mat, r_dim, 5000, learning_rate)
