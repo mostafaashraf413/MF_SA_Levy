@@ -11,14 +11,18 @@ stats = tools.Statistics(key=lambda ind: ind.fitness.values)
 stats.register("min", np.min)
 #stats.register("max", np.max)
 
-def run_ga(CXPB = 0.9, MUTPB = 0.2, LSPB = 0.5, NGEN = 5000, ind_type = np.ndarray,
+def run_ga(pool = None, CXPB = 0.9, MUTPB = 0.2, LSPB = 0.5, NGEN = 5000, ind_type = np.ndarray,
            ind_size = 1, pop_size = 100, ind_gen = None, mate = None,
            mutate = None, select = tools.selTournament, evaluate = None, local_search = None):
+           
+    toolbox = base.Toolbox()
+    if pool != None:
+        toolbox.register("map", pool.map)
            
     creator.create("FitnessMin", base.Fitness, weights=(-1.0,))
     creator.create("Individual", ind_type, fitness=creator.FitnessMin)
     
-    toolbox = base.Toolbox()
+    
     toolbox.register("attribute", ind_gen)
     toolbox.register("individual", tools.initRepeat, creator.Individual, toolbox.attribute, n=ind_size)
     toolbox.register("population", tools.initRepeat, list, toolbox.individual)

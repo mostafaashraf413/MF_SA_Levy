@@ -84,8 +84,19 @@ def additiveRule_LS(ind):
             if new_Wij >= 0: W[i][l] = new_Wij
     return ind
     
-pop = ga.run_ga(pop_size = 50,ind_gen = genIndividual, mate = linear_combinaiton_CX, mutate = mMut, evaluate = evaluate_ind, local_search = additiveRule_LS)
-
-#print pop
-
-minInd = min(pop , key = lambda ind: ind.fitness.values[0])
+if __name__ == '__main__':
+    
+    import time
+    start = time.time()
+    import multiprocessing
+    multiprocessing.freeze_support()
+    pool = multiprocessing.Pool(processes= 8,maxtasksperchild=8)
+    multiprocessing.freeze_support()
+    pop = ga.run_ga(pool = pool, pop_size = 50,ind_gen = genIndividual, mate = linear_combinaiton_CX, mutate = mMut, evaluate = evaluate_ind, local_search = additiveRule_LS)
+    
+    end = time.time()
+    print(end - start)
+    
+    #print pop
+    
+    minInd = min(pop , key = lambda ind: ind.fitness.values[0])

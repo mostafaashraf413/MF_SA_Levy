@@ -30,10 +30,21 @@ creator.create("Individual", np.ndarray, fitness=creator.FitnessMin)
 
 IND_SIZE = 1#len(V), len(V[0])
 
+
 def genIndividual():
     return np.random.rand(len(V), 100)
 
 toolbox = base.Toolbox()
+###########
+#import multiprocessing
+#multiprocessing.freeze_support()
+#pool = multiprocessing.Pool()
+#toolbox.register("map", pool.map)
+#from scoop import futures
+#
+#toolbox.register("map", futures.map)
+############
+
 toolbox.register("attribute", genIndividual)
 toolbox.register("individual", tools.initRepeat, creator.Individual, toolbox.attribute, n=IND_SIZE)
 toolbox.register("population", tools.initRepeat, list, toolbox.individual)
@@ -70,8 +81,8 @@ stats.register("min", np.min)
 #
 
 def main():
-    pop = toolbox.population(n=50)
-    CXPB, MUTPB, NGEN = 0.9, 0.2, 5000
+    pop = toolbox.population(n=5000)
+    CXPB, MUTPB, NGEN = 0.9, 0.2, 50
 
     # Evaluate the entire population
     fitnesses = map(toolbox.evaluate, pop)
@@ -108,9 +119,22 @@ def main():
         record = stats.compile(pop)
         print "gen #%d: stats:%s"%(g, str(record['min']))
     return pop
-            
-pop = main()
+
+if __name__ == '__main__':
+    import time
+
+    start = time.time()
+    
+    import multiprocessing
+    multiprocessing.freeze_support()
+    pool = multiprocessing.Pool()
+    toolbox.register("map", pool.map)
+    multiprocessing.freeze_support()
+    pop = main()
+    
+    end = time.time()
+    print(end - start)
 
 #print pop
 
-minInd = min(pop , key = lambda ind: ind.fitness.values[0])
+    minInd = min(pop , key = lambda ind: ind.fitness.values[0])
