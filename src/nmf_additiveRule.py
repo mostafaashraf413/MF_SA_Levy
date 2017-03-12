@@ -131,14 +131,14 @@ def nmf_additive(V, nLatentFeatures = 10, nSteps = 50, beta = 0.005, minError = 
         
 ###################################################### 
 
-def nmf_additive_sym(V, nLatentFeatures = 10, nSteps = 50, beta = 0.005, minError = 0.02):
+def nmf_additive_sym(V, nLatentFeatures = 10, nIteration = 50, beta = 0.005, minError = 0.02):
     
     V = np.array(V)
     W = np.random.rand(len(V), nLatentFeatures)
     
     #logger.info('nmf_additive symmetric has started:')
     print 'nmf_additive symmetric has started:'
-    for step in xrange(nSteps):
+    for step in xrange(nIteration):
         
         ##### for left matrix (W)
         VW = V.dot(W)
@@ -149,6 +149,34 @@ def nmf_additive_sym(V, nLatentFeatures = 10, nSteps = 50, beta = 0.005, minErro
                 #print i,' ',l
                 new_Wij = W[i][l] + beta * (VW[i][l] - WWW[i][l])
                 if new_Wij >= 0: W[i][l] = new_Wij
+         
+        #calculate the distance
+        dist = frobeniusNorm(V, W.dot(W.T))
+        #logger.info('iteration #%d, error distane = %f'%(step, dist))
+        print 'iteration #%d, error distane = %f'%(step, dist)
+        #calculate the error to stop learning 
+        if stopLearning(minError, dist):
+            break
+    #logger.info('factorization is done!')
+    print 'factorization is done!'
+        
+    return W
+        
+###################################################### 
+
+def nmf_multiplicative_sym(V, nLatentFeatures = 10, nIteration = 50, beta = 0.5, minError = 0.02):
+    
+    V = np.array(V)
+    W = np.random.rand(len(V), nLatentFeatures)
+    
+    #logger.info('nmf_additive symmetric has started:')
+    print 'nmf_multiplicative symmetric has started:'
+    for step in xrange(nIteration):
+        
+        VW = V.dot(W)
+        WWW  = W.dot(np.dot(W.T, W))
+    
+        W *= (1 - beta + (beta * VW / WWW))
          
         #calculate the distance
         dist = frobeniusNorm(V, W.dot(W.T))
@@ -185,6 +213,16 @@ if __name__ == "__main__":
     mat = utils.read_matrix_edgeList('../resources/facebook_4039N.txt')
     
     #w,h = nmf_additive(mat, 5, 1000, 0.001)
-    r_dim = 200
-    learning_rate = 0.1e-5 #0.1e-2
-    w = nmf_additive_sym(mat, r_dim, 5000, learning_rate)
+    r_dim = 50
+    
+    #beta = 0.1e-2 #0.1e-5
+    #w = nmf_additive_sym(mat, r_dim, 5000, beta)
+    
+    w = nmf_multiplicative_sym(mat, r_dim, 100)
+    nmf_multiplicative_sym
+    
+    
+    
+    
+    
+    

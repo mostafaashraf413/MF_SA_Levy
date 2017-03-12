@@ -1,5 +1,6 @@
 - double crossover better than single crossover.
 - use additiveRule as a local search.
+- multiplicative update rule with beta = 0.5 as a local search in GA
 - for future work:
     - tracking the relation between the learning and the iteration number in additive rule
     

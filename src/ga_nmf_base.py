@@ -2,6 +2,7 @@ from deap import base, creator
 import random
 from deap import tools
 import numpy as np
+import matplotlib.pyplot as plt
 
 
 # statistics registeration
@@ -11,7 +12,7 @@ stats = tools.Statistics(key=lambda ind: ind.fitness.values)
 stats.register("min", np.min)
 #stats.register("max", np.max)
 
-def run_ga(pool = None, CXPB = 0.9, MUTPB = 0.2, LSPB = 0.5, NGEN = 5000, ind_type = np.ndarray,
+def run_ga(pool = None, CXPB = 0.9, MUTPB = 0.2, LSPB = 0.5, NGEN = 100, ind_type = np.ndarray,
            ind_size = 1, pop_size = 100, ind_gen = None, mate = None,
            mutate = None, select = tools.selTournament, evaluate = None, local_search = None):
            
@@ -30,7 +31,7 @@ def run_ga(pool = None, CXPB = 0.9, MUTPB = 0.2, LSPB = 0.5, NGEN = 5000, ind_ty
     pop = toolbox.population(n=pop_size)
     
     toolbox.register("mate", mate) #tools.cxTwoPoint)
-    toolbox.register("mutate", mutate, mu=0, sigma=1, indpb=0.2)#tools.mutGaussian, mu=0, sigma=1, indpb=0.1)
+    toolbox.register("mutate", mutate, indpb=0.2)#tools.mutGaussian, mu=0, sigma=1, indpb=0.1)
     toolbox.register("local_search", local_search)
     toolbox.register("select", select, tournsize=3)
     toolbox.register("evaluate", evaluate)
@@ -40,7 +41,8 @@ def run_ga(pool = None, CXPB = 0.9, MUTPB = 0.2, LSPB = 0.5, NGEN = 5000, ind_ty
     fitnesses = map(toolbox.evaluate, pop)
     for ind, fit in zip(pop, fitnesses):
         ind.fitness.values = fit
-
+    
+    min_fit_lst = []
     for g in range(NGEN):
         # Select the next generation individuals
         offspring = toolbox.select(pop, len(pop))
@@ -74,5 +76,9 @@ def run_ga(pool = None, CXPB = 0.9, MUTPB = 0.2, LSPB = 0.5, NGEN = 5000, ind_ty
         pop[:] = offspring
         # printing statistics
         record = stats.compile(pop)
-        print "gen #%d: stats:%s"%(g, str(record['min']))
+        min_fit = record['min']
+        min_fit_lst.append(min_fit)
+        print "gen #%d: stats:%f"%(g, min_fit)
+    plt.plot(min_fit_lst)
+    plt.show()
     return pop
