@@ -2,6 +2,7 @@
 import numpy as np
 import logging
 import utils
+import matplotlib.pyplot as plt
 
 #logger = logging.getLogger(__file__.split('/')[-1])
 #logger.setLevel(logging.INFO)
@@ -169,6 +170,7 @@ def nmf_multiplicative_sym(V, nLatentFeatures = 10, nIteration = 50, beta = 0.5,
     V = np.array(V)
     W = np.random.rand(len(V), nLatentFeatures)
     
+    error_lst = []
     #logger.info('nmf_additive symmetric has started:')
     print 'nmf_multiplicative symmetric has started:'
     for step in xrange(nIteration):
@@ -180,12 +182,16 @@ def nmf_multiplicative_sym(V, nLatentFeatures = 10, nIteration = 50, beta = 0.5,
          
         #calculate the distance
         dist = frobeniusNorm(V, W.dot(W.T))
+        error_lst.append(dist)
         #logger.info('iteration #%d, error distane = %f'%(step, dist))
         print 'iteration #%d, error distane = %f'%(step, dist)
         #calculate the error to stop learning 
         if stopLearning(minError, dist):
             break
     #logger.info('factorization is done!')
+    
+    plt.plot(error_lst)
+    plt.show()
     print 'factorization is done!'
         
     return W

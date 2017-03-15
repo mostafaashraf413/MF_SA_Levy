@@ -12,8 +12,8 @@ stats = tools.Statistics(key=lambda ind: ind.fitness.values)
 stats.register("min", np.min)
 #stats.register("max", np.max)
 
-def run_ga(pool = None, CXPB = 0.9, MUTPB = 0.2, LSPB = 0.5, NGEN = 100, ind_type = np.ndarray,
-           ind_size = 1, pop_size = 100, ind_gen = None, mate = None,
+def run_ga(pool = None, CXPB = 0.9, MUTPB = 0.2, LSPB = 0.2, NGEN = 100, ind_type = np.ndarray,
+           ind_size = None, pop_size = 50, ind_gen = None, mate = None,
            mutate = None, select = tools.selTournament, evaluate = None, local_search = None):
            
     toolbox = base.Toolbox()
@@ -31,7 +31,7 @@ def run_ga(pool = None, CXPB = 0.9, MUTPB = 0.2, LSPB = 0.5, NGEN = 100, ind_typ
     pop = toolbox.population(n=pop_size)
     
     toolbox.register("mate", mate) #tools.cxTwoPoint)
-    toolbox.register("mutate", mutate, indpb=0.2)#tools.mutGaussian, mu=0, sigma=1, indpb=0.1)
+    toolbox.register("mutate", mutate, indpb=0.1)#tools.mutGaussian, mu=0, sigma=1, indpb=0.1)
     toolbox.register("local_search", local_search)
     toolbox.register("select", select, tournsize=3)
     toolbox.register("evaluate", evaluate)
