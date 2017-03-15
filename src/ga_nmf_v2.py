@@ -74,7 +74,7 @@ def mMut(ind, indpb):
     return ind
     
 def levyMut(ind, indpb):
-    ind += 0.01 * levy.rvs(alpha = 1.5, beta=0.5, size=(len(ind), len(ind[0])))
+    ind += 0.1 * levy.rvs(alpha = 1.5, beta=0.5, size=(len(ind), len(ind[0])))
     return ind
      
 def mantegna_levy_step(beta=1.5):
@@ -123,7 +123,7 @@ def gradient_descent_LS(ind):
 if __name__ == '__main__':
   
     pop = ga.run_ga(ind_size = len(V), pop_size = 50, mate = mCX_double, mutate = levyMut, MUTPB = 0.4, 
-                    evaluate = evaluate_ind, local_search = multiplicativeRule_LS, CXPB = 0.9, LSPB = 0.2,
+                    evaluate = evaluate_ind, local_search = multiplicativeRule_LS, CXPB = 0.9, LSPB = 0.3,
                     ind_gen = generate_ind)
    
     #print pop
