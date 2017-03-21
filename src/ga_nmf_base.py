@@ -12,13 +12,11 @@ stats = tools.Statistics(key=lambda ind: ind.fitness.values)
 stats.register("min", np.min)
 #stats.register("max", np.max)
 
-def run_ga(pool = None, CXPB = 0.9, MUTPB = 0.2, LSPB = 0.2, NGEN = 100, ind_type = np.ndarray,
+def run_ga(new_inds_ratio = 0.1, CXPB = 0.9, MUTPB = 0.2, LSPB = 0.2, NGEN = 100, ind_type = np.ndarray,
            ind_size = None, pop_size = 50, ind_gen = None, mate = None,
            mutate = None, select = tools.selTournament, evaluate = None, local_search = None):
            
     toolbox = base.Toolbox()
-    if pool != None:
-        toolbox.register("map", pool.map)
            
     creator.create("FitnessMin", base.Fitness, weights=(-1.0,))
     creator.create("Individual", ind_type, fitness=creator.FitnessMin)
@@ -31,7 +29,7 @@ def run_ga(pool = None, CXPB = 0.9, MUTPB = 0.2, LSPB = 0.2, NGEN = 100, ind_typ
     pop = toolbox.population(n=pop_size)
     
     toolbox.register("mate", mate) #tools.cxTwoPoint)
-    toolbox.register("mutate", mutate, indpb=0.1)#tools.mutGaussian, mu=0, sigma=1, indpb=0.1)
+    toolbox.register("mutate", mutate, indpb=0.3)#tools.mutGaussian, mu=0, sigma=1, indpb=0.1)
     toolbox.register("local_search", local_search)
     toolbox.register("select", select, tournsize=len(pop)/4)
     toolbox.register("evaluate", evaluate)
@@ -45,7 +43,7 @@ def run_ga(pool = None, CXPB = 0.9, MUTPB = 0.2, LSPB = 0.2, NGEN = 100, ind_typ
     min_fit_lst = []
     for g in range(NGEN):
         # Select the next generation individuals
-        offspring = toolbox.select(pop, len(pop))
+        offspring = toolbox.select(pop, int(pop_size*(1-new_inds_ratio)))
         # Clone the selected individuals
         offspring = map(toolbox.clone, offspring)
         
@@ -66,6 +64,8 @@ def run_ga(pool = None, CXPB = 0.9, MUTPB = 0.2, LSPB = 0.2, NGEN = 100, ind_typ
                 toolbox.local_search(indvidual)
                 del indvidual.fitness.values
 
+        # Generate new random individuals
+        offspring += toolbox.population(n=(pop_size-len(offspring)))
         # Evaluate the individuals with an invalid fitness
         invalid_ind = [ind for ind in offspring if not ind.fitness.valid]
         fitnesses = map(toolbox.evaluate, invalid_ind)
