@@ -8,9 +8,9 @@ import matplotlib.pyplot as plt
 # statistics registeration
 stats = tools.Statistics(key=lambda ind: ind.fitness.values)
 #stats.register("avg", np.mean)
-#stats.register("std", np.std)
+stats.register("std", np.std)
 stats.register("min", np.min)
-#stats.register("max", np.max)
+stats.register("max", np.max)
 
 def run_ga(new_inds_ratio = 0.1, CXPB = 0.9, MUTPB = 0.2, LSPB = 0.2, NGEN = 100, ind_type = np.ndarray,
            ind_size = None, pop_size = 50, ind_gen = None, mate = None,
@@ -29,7 +29,7 @@ def run_ga(new_inds_ratio = 0.1, CXPB = 0.9, MUTPB = 0.2, LSPB = 0.2, NGEN = 100
     pop = toolbox.population(n=pop_size)
     
     toolbox.register("mate", mate) #tools.cxTwoPoint)
-    toolbox.register("mutate", mutate, indpb=0.3)#tools.mutGaussian, mu=0, sigma=1, indpb=0.1)
+    toolbox.register("mutate", mutate, indpb=0.1)#tools.mutGaussian, mu=0, sigma=1, indpb=0.1)
     toolbox.register("local_search", local_search)
     toolbox.register("select", select, tournsize=len(pop)/4)
     toolbox.register("evaluate", evaluate)
@@ -77,8 +77,10 @@ def run_ga(new_inds_ratio = 0.1, CXPB = 0.9, MUTPB = 0.2, LSPB = 0.2, NGEN = 100
         # printing statistics
         record = stats.compile(pop)
         min_fit = record['min']
+        max_fit = record['max']
+        std = record['std']
         min_fit_lst.append(min_fit)
-        print "gen #%d: stats:%f"%(g, min_fit)
+        print "gen #%d: stats min:%f max:%f std:%f"%(g, min_fit, max_fit, std)
     plt.plot(min_fit_lst)
     plt.show()
     return pop

@@ -10,6 +10,8 @@ from math import sin, pi
 
 
 train, test, mSize = utils.read_data_to_train_test('../resources/ml-100k/final_set.csv', zero_index = False)
+train = map(lambda x: [x[0],x[1],x[2]/5.0] , train)
+test = map(lambda x: [x[0],x[1],x[2]/5.0] , test)
 
 V = utils.create_matrix(train, mSize)
 maskV = np.sign(V)
@@ -25,8 +27,11 @@ def generate_ind():
 def evaluate_ind(ind):
     W, H = ind[:mSize[0]], ind[mSize[0]:]
     predV = maskV * W.dot(H.T)
-    norm = np.linalg.norm(V-predV)
-    return norm,
+    fit = np.linalg.norm(V-predV)
+    
+    if np.min(ind)<0:
+        fit = fit*0.1
+    return fit,
     
 def mCX_single(ind1, ind2):
     cX_point = random.randint(1,len(ind1))
@@ -56,6 +61,10 @@ def mCX_double_horizontally(ind1, ind2):
         
     ind1[cX_point_1:cX_point_2], ind2[cX_point_1:cX_point_2] = ind2[cX_point_1:cX_point_2].copy(), ind1[cX_point_1:cX_point_2].copy()
     return ind1, ind2
+    
+def mCV_swaping_matrices(ind1, ind2):
+    ind1[:mSize[0]], ind2[:mSize[0]] = ind2[:mSize[0]].copy(), ind1[:mSize[0]].copy()
+    return ind1, ind2
         
 def linear_combinaiton_CX(ind1, ind2):
     rand1, rand2= random.random(), random.random()
@@ -72,9 +81,14 @@ def mMut(ind, indpb):
     return ind
     
 def levyMut(ind, indpb):
-    ind += 0.1 * levy.rvs(alpha = 1.5, beta=0.5, size=(len(ind), len(ind[0])))
+    ind += indpb * levy.rvs(alpha = 1.5, beta=0.5, size=(len(ind), len(ind[0])))
     ind = np.maximum(ind, eps)
     return ind
+    
+def mixMut(ind, indpb):
+    if random.random() < 0.5:
+        return levyMut(ind, indpb)
+    return mMut(ind, indpb)
      
 #def mantegna_levy_step(beta=1.5):
 #    sigma = gamma(1+beta) * sin(pi*beta/2.)
@@ -93,15 +107,21 @@ def least_square_LS(ind):
     ind[mSize[0]:] = np.linalg.lstsq(ind[:mSize[0]], V)[0].T
     return ind
 
-def multiplicativeRule_LS(ind):
-    #W = ind
-    #VW = V.dot(W)
-    #WWW  = W.dot(np.dot(W.T, W))
-    #beta = 0.5
-    #
-    #W *= (1 - beta + (beta * VW / WWW))
-    #return ind
-    pass
+def wnmf_LS(ind):
+    W, H = ind[:mSize[0]], ind[mSize[0]:].T
+    
+    VH = np.dot(V, H.T)
+    WHH = np.dot(maskV*W.dot(H), H.T)+eps
+    W[:] = W * (VH/WHH)
+    W[:] = np.maximum(W, eps)
+    
+    WV = np.dot(W.T, V)
+    WWH = np.dot(W.T, maskV*W.dot(H))+eps
+    H[:] = H *(WV/WWH)
+    H[:] = np.maximum(H, eps)
+    
+    return ind
+    
     
 def gradient_descent_LS(ind):
     #W = ind
@@ -117,9 +137,9 @@ def gradient_descent_LS(ind):
     
 if __name__ == '__main__':
   
-    pop = ga.run_ga(ind_size = mSize[0]+mSize[1], pop_size = 70, mate = mCX_double_horizontally, mutate = levyMut, MUTPB = 0.2, 
-                    evaluate = evaluate_ind, local_search = least_square_LS, CXPB = 0.9, LSPB = 0.0,
-                    ind_gen = generate_ind, new_inds_ratio = 0.3)
+    pop = ga.run_ga(ind_size = mSize[0]+mSize[1], pop_size = 25, mate = mCX_double_horizontally, mutate = mixMut, MUTPB = 0.2, 
+                    evaluate = evaluate_ind, local_search = wnmf_LS, CXPB = 0.9, LSPB = 0.1,
+                    ind_gen = generate_ind, new_inds_ratio = 0.1, NGEN = 200)
    
     #print pop
     
