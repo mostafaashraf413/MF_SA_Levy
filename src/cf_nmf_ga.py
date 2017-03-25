@@ -10,8 +10,8 @@ from math import sin, pi
 
 
 train, test, mSize = utils.read_data_to_train_test('../resources/ml-100k/final_set.csv', zero_index = False)
-train = map(lambda x: [x[0],x[1],x[2]/5.0] , train)
-test = map(lambda x: [x[0],x[1],x[2]/5.0] , test)
+#train = map(lambda x: [x[0],x[1],x[2]/5.0] , train)
+#test = map(lambda x: [x[0],x[1],x[2]/5.0] , test)
 
 V = utils.create_matrix(train, mSize)
 maskV = np.sign(V)
@@ -27,7 +27,7 @@ def generate_ind():
 def evaluate_ind(ind):
     W, H = ind[:mSize[0]], ind[mSize[0]:]
     predV = maskV * W.dot(H.T)
-    fit = np.linalg.norm(V-predV)
+    fit = utils.rmse(V, predV, len(train))#np.linalg.norm(V-predV)
     
     if np.min(ind)<0:
         fit = fit*0.1
@@ -139,7 +139,7 @@ if __name__ == '__main__':
   
     pop = ga.run_ga(ind_size = mSize[0]+mSize[1], pop_size = 25, mate = mCX_double_horizontally, mutate = mixMut, MUTPB = 0.2, 
                     evaluate = evaluate_ind, local_search = wnmf_LS, CXPB = 0.9, LSPB = 0.1,
-                    ind_gen = generate_ind, new_inds_ratio = 0.1, NGEN = 200)
+                    ind_gen = generate_ind, new_inds_ratio = 0.1, NGEN = 100, curve_label='GA_LS')
    
     #print pop
     

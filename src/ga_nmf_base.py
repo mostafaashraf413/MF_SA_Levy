@@ -14,7 +14,7 @@ stats.register("max", np.max)
 
 def run_ga(new_inds_ratio = 0.1, CXPB = 0.9, MUTPB = 0.2, LSPB = 0.2, NGEN = 100, ind_type = np.ndarray,
            ind_size = None, pop_size = 50, ind_gen = None, mate = None,
-           mutate = None, select = tools.selTournament, evaluate = None, local_search = None):
+           mutate = None, select = tools.selTournament, evaluate = None, local_search = None, curve_label = "GA"):
            
     toolbox = base.Toolbox()
            
@@ -81,6 +81,7 @@ def run_ga(new_inds_ratio = 0.1, CXPB = 0.9, MUTPB = 0.2, LSPB = 0.2, NGEN = 100
         std = record['std']
         min_fit_lst.append(min_fit)
         print "gen #%d: stats min:%f max:%f std:%f"%(g, min_fit, max_fit, std)
-    plt.plot(min_fit_lst)
+    plt.plot(min_fit_lst, label=curve_label)
+    plt.legend()
     plt.show()
     return pop

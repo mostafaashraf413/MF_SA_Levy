@@ -1,5 +1,6 @@
 import numpy as np
 import random
+from math import sqrt
 
 def read_data_to_train_test(fileName, delimiter = ' ', train_size = 0.8, zero_index = True):
     test_data = None
@@ -24,21 +25,25 @@ def read_data_to_train_test(fileName, delimiter = ' ', train_size = 0.8, zero_in
     
     return training_data, test_data, matrix_size
     
-def test_accuracy_without_bias(test_data, matrix):
-    true_predictions = 0
-    for u,i,r in test_data:
-        if round(matrix[u][i]) == r:
-            true_predictions+=1
-    accuracy = true_predictions/float(len(test_data))
-    return accuracy
+#def test_accuracy_without_bias(test_data, matrix):
+#    true_predictions = 0
+#    for u,i,r in test_data:
+#        if round(matrix[u][i]) == r:
+#            true_predictions+=1
+#    accuracy = true_predictions/float(len(test_data))
+#    return accuracy
     
-def mean_squared_error_without_bias(test_data, matrix):
-    mSE = 0
-    for u,i,act in [ [t[0], t[1], t[2]] for t in test_data]:
-        pred = matrix[u][i] 
-        error = (act-pred)
-        mSE += error*error
-    return mSE/float(len(test_data))
+#def mean_squared_error_without_bias(test_data, matrix):
+#    mSE = 0
+#    for u,i,act in [ [t[0], t[1], t[2]] for t in test_data]:
+#        pred = matrix[u][i] 
+#        error = (act-pred)
+#        mSE += error*error
+#    return mSE/float(len(test_data))
+    
+def rmse(real_mat, pred_mat, n):
+    return np.linalg.norm(real_mat-pred_mat) * sqrt(1./n)
+    
 
 def create_matrix(edgeList, size):
     mat = np.zeros(size)
