@@ -77,7 +77,7 @@ def collaborative_filtering_rsnmf(training_data = None, rating_matrix_size = Non
 # http://stackoverflow.com/questions/22767695/python-non-negative-matrix-factorization-that-handles-both-zeros-and-missing-dat
 def collaborative_filtering_wnmf(training_data = None, rating_matrix_size = None, 
                                                nLatent_features=None, beta = 0.5, nIterations=100): 
-    eps = 1e-5                            
+    eps = 1e-20                            
     V = utils.create_matrix(training_data, rating_matrix_size)
     W = np.random.rand(rating_matrix_size[0], nLatent_features)
     W = np.maximum(W, eps)
@@ -175,7 +175,8 @@ def collaborative_filtering_SGD(training_data = None, rating_matrix_size = None,
 
 if __name__ == '__main__':
 
-    training_data, test_data, matrix_size = utils.read_data_to_train_test('../resources/ml-100k/final_set.csv', zero_index = False)
+    dataset = ('movelens 1m', '../resources/ml-1m/ratings.dat')
+    training_data, test_data, matrix_size = utils.read_data_to_train_test(dataset[1], zero_index = False)
     
     #training_data, tmp, matrix_size = read_data_to_train_test("coll_filtering_datasets/ml-100k/ua.base", 
     #                                    train_size = 1, zero_index=False)
@@ -185,27 +186,37 @@ if __name__ == '__main__':
     #del tmp
     
     test_rating_mat = utils.create_matrix(test_data, matrix_size)
-    training_algorithm = 2
+    nFeatures = 50
+    nIterations=100
+    
+    training_algorithm = 1
     
     #for SGD
     if training_algorithm == 1:
+        rf=0.02
+        lr=0.01
         rMat, lMat, biasU, biasI, biasG = collaborative_filtering_SGD(training_data = training_data, 
-            rating_matrix_size = matrix_size, nLatent_features=20, rf=0.02, lr=0.01, nIterations=100)
+            rating_matrix_size = matrix_size, nLatent_features = nFeatures, rf=rf, lr=lr, nIterations=nIterations)
         
         biasU_mat = np.repeat(biasU, len(test_rating_mat[0])).reshape((len(test_rating_mat), len(test_rating_mat[0])))
         biasI_mat = np.repeat(biasI, len(test_rating_mat)).reshape((len(test_rating_mat[0]) , len(test_rating_mat))).T
         
         rating_matrix = rMat.dot(lMat.T) + biasU_mat + biasI_mat + biasG
-        print "testing rmse = ", utils.rmse(test_rating_mat, rating_matrix*np.sign(test_rating_mat), len(test_data))#mean_squared_error(test_data, rating_matrix, biasU, biasI, biasG)
+        
+        utils.print_results(predMat = rating_matrix, nFeatures = nFeatures, 
+                            train_data = training_data, test_data = test_data,
+                            method_name = 'SGD_bias', nIterations = nIterations, 
+                            dataset_name = dataset[0], method_details=[('learning rate', lr), ('regularization factor',rf)])
+    
     
     #for WMNF
     elif training_algorithm == 2:
-        #training_data = map(lambda x: [x[0],x[1],x[2]/5.0] , training_data)
-        #test_data = map(lambda x: [x[0],x[1],x[2]/5.0] , test_data)
         W, H = collaborative_filtering_wnmf(training_data = training_data, beta = 1,
-                            rating_matrix_size = matrix_size, nLatent_features=20, nIterations=100)
+                            rating_matrix_size = matrix_size, nLatent_features=nFeatures, nIterations=nIterations)
         rating_matrix = W.dot(H)
-        print "testing rmse = ",utils.rmse(test_rating_mat , rating_matrix*np.sign(test_rating_mat), len(test_data))
+        utils.print_results(uMat = W, iMat = H, nFeatures = nFeatures,
+                            train_data = training_data, test_data = test_data,
+                            method_name = 'WNMF', nIterations = nIterations, dataset_name = dataset[0])
     
     #for RSNMF        
     elif training_algorithm == 3:

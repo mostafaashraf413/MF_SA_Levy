@@ -8,16 +8,14 @@ from scipy.stats import levy_stable as levy
 from scipy.special import gamma
 from math import sin, pi
 
-
-train, test, mSize = utils.read_data_to_train_test('../resources/ml-100k/final_set.csv', zero_index = False)
-#train = map(lambda x: [x[0],x[1],x[2]/5.0] , train)
-#test = map(lambda x: [x[0],x[1],x[2]/5.0] , test)
+dataset = ('movelens 100k', '../resources/ml-100k/final_set.csv')
+train, test, mSize = utils.read_data_to_train_test(dataset[1], zero_index = False)
 
 V = utils.create_matrix(train, mSize)
 maskV = np.sign(V)
 
 r_dim = 20
-eps = 1e-5
+eps = 1e-20
 
 def generate_ind():
     r = np.random.rand(r_dim)
@@ -30,7 +28,7 @@ def evaluate_ind(ind):
     fit = utils.rmse(V, predV, len(train))#np.linalg.norm(V-predV)
     
     if np.min(ind)<0:
-        fit = fit*0.1
+        fit *= 100
     return fit,
     
 def mCX_single(ind1, ind2):
@@ -108,39 +106,64 @@ def least_square_LS(ind):
     return ind
 
 def wnmf_LS(ind):
+    beta = 0.5
     W, H = ind[:mSize[0]], ind[mSize[0]:].T
     
     VH = np.dot(V, H.T)
     WHH = np.dot(maskV*W.dot(H), H.T)+eps
-    W[:] = W * (VH/WHH)
+    W[:] = W * ((1-beta)+beta*(VH/WHH))
     W[:] = np.maximum(W, eps)
     
     WV = np.dot(W.T, V)
     WWH = np.dot(W.T, maskV*W.dot(H))+eps
-    H[:] = H *(WV/WWH)
+    H[:] = H * ((1-beta)+beta*(WV/WWH))
     H[:] = np.maximum(H, eps)
     
     return ind
     
-    
-def gradient_descent_LS(ind):
-    #W = ind
-    #n_points = 1000
-    #point_lst = zip(np.random.randint(low=0, high=len(V), size=n_points), np.random.randint(low=0, high=len(V[0]), size=n_points))
-    #lr = 0.02
-    #for i,j in point_lst:
-    #    e = V[i][j] - np.dot(W[i], W[j].T)
-    #    W[i] += lr*e*W[j]
-    #    W[j] += lr*e*W[i] 
-    #return ind 
-    pass
-    
+########################################################################################
+#"Koren, Yehuda, Robert Bell, and Chris Volinsky. "Matrix factorization techniques 
+# for recommender systems." Computer 42.8 (2009)."    
+def sgd_LS(ind):
+    rf=0.01
+    lr=0.001
+    W, H = ind[:mSize[0]], ind[mSize[0]:]
+    for u,i,y in [[td[0], td[1], td[2]] for td in  train]:                                       
+        e = y - np.dot(W[u], H[i].T)
+        W[u] += lr*(e * H[i] - (rf*W[u]))
+        H[i] += lr*(e * W[u] - (rf*H[i]))
+    return ind
+        
 if __name__ == '__main__':
-  
-    pop = ga.run_ga(ind_size = mSize[0]+mSize[1], pop_size = 25, mate = mCX_double_horizontally, mutate = mixMut, MUTPB = 0.2, 
-                    evaluate = evaluate_ind, local_search = wnmf_LS, CXPB = 0.9, LSPB = 0.1,
-                    ind_gen = generate_ind, new_inds_ratio = 0.1, NGEN = 100, curve_label='GA_LS')
-   
-    #print pop
     
+    pop_size = 50
+    mate = mCX_double_vertically
+    mutate = mMut
+    MUTPB = 0.2
+    local_search = wnmf_LS
+    CXPB = 0.9
+    LSPB = 0.2
+    new_inds_ratio = 0.05
+    NGEN = 100
+    method_name = 'GA_LS'
+  
+    pop = ga.run_ga(ind_size = mSize[0]+mSize[1], pop_size = pop_size, mate = mate, mutate = mutate, MUTPB = MUTPB, 
+                    evaluate = evaluate_ind, local_search = local_search, CXPB = CXPB, LSPB = LSPB,
+                    ind_gen = generate_ind, new_inds_ratio = new_inds_ratio, NGEN = NGEN, curve_label = method_name)
+   
+    #printng results:
     minInd = min(pop , key = lambda ind: ind.fitness.values[0])
+    W, H = minInd[:mSize[0]], minInd[mSize[0]:].T
+    ga_results = utils.print_results(uMat = W, iMat = H, nFeatures = r_dim, 
+                                    train_data = train, test_data = test, 
+                                    method_name = method_name, nIterations = NGEN, 
+                                    dataset_name = dataset[0], 
+                                    method_details = [('pop_size',pop_size),
+                                        ('crossover', mate.__name__),
+                                        ('crossover prob', CXPB),
+                                        ('mutation',mutate.__name__),
+                                        ('mutation prob', MUTPB),
+                                        ('local search', local_search.__name__),
+                                        ('local search prob', LSPB),
+                                        ('new random individuals ratio', new_inds_ratio)]
+                                    )
