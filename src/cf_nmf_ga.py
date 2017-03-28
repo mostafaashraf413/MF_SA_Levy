@@ -80,7 +80,7 @@ def mMut(ind, indpb):
     
 def levyMut(ind, indpb):
     ind += indpb * levy.rvs(alpha = 1.5, beta=0.5, size=(len(ind), len(ind[0])))
-    ind = np.maximum(ind, eps)
+    #ind = np.maximum(ind, eps)
     return ind
     
 def mixMut(ind, indpb):
@@ -125,27 +125,27 @@ def wnmf_LS(ind):
 #"Koren, Yehuda, Robert Bell, and Chris Volinsky. "Matrix factorization techniques 
 # for recommender systems." Computer 42.8 (2009)."    
 def sgd_LS(ind):
-    rf=0.01
-    lr=0.001
+    #rf=0.1
+    lr=0.006
     W, H = ind[:mSize[0]], ind[mSize[0]:]
     for u,i,y in [[td[0], td[1], td[2]] for td in  train]:                                       
         e = y - np.dot(W[u], H[i].T)
-        W[u] += lr*(e * H[i] - (rf*W[u]))
-        H[i] += lr*(e * W[u] - (rf*H[i]))
+        W[u] += lr*(e * H[i] )#- (rf*W[u]))
+        H[i] += lr*(e * W[u] )#- (rf*H[i]))
     return ind
         
 if __name__ == '__main__':
     
     pop_size = 50
-    mate = mCX_double_vertically
-    mutate = mMut
+    mate = linear_combinaiton_CX
+    mutate = levyMut
     MUTPB = 0.2
     local_search = wnmf_LS
     CXPB = 0.9
     LSPB = 0.2
     new_inds_ratio = 0.05
     NGEN = 100
-    method_name = 'GA_LS'
+    method_name = 'GA_LS without eps'
   
     pop = ga.run_ga(ind_size = mSize[0]+mSize[1], pop_size = pop_size, mate = mate, mutate = mutate, MUTPB = MUTPB, 
                     evaluate = evaluate_ind, local_search = local_search, CXPB = CXPB, LSPB = LSPB,

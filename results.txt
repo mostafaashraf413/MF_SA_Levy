@@ -285,3 +285,63 @@
 ## training RMSE: 0.738279 
 ## testing RMSE: 1.039107 
 ########################################################
+############# results of GA_LS method: 
+## dataset: movelens 100k 
+## number of latent features: 20 
+## number of training iteratins: 100 
+## pop_size: 50 
+## crossover: mCX_double_vertically 
+## crossover prob: 0.9 
+## mutation: mMut 
+## mutation prob: 0.2 
+## local search: wnmf_LS 
+## local search prob: 0.2 
+## new random individuals ratio: 0.05 
+## training RMSE: 0.737281 
+## testing RMSE: 1.022385 
+########################################################
+############# results of GA_LS method: 
+## dataset: movelens 100k 
+## number of latent features: 20 
+## number of training iteratins: 100 
+## pop_size: 50 
+## crossover: linear_combinaiton_CX 
+## crossover prob: 0.9 
+## mutation: mMut 
+## mutation prob: 0.2 
+## local search: wnmf_LS 
+## local search prob: 0.2 
+## new random individuals ratio: 0.05 
+## training RMSE: 0.746920 
+## testing RMSE: 0.998399 
+########################################################
+############# results of GA_LS method: 
+## dataset: movelens 100k 
+## number of latent features: 20 
+## number of training iteratins: 100 
+## pop_size: 50 
+## crossover: linear_combinaiton_CX 
+## crossover prob: 0.9 
+## mutation: levyMut 
+## mutation prob: 0.2 
+## local search: wnmf_LS 
+## local search prob: 0.2 
+## new random individuals ratio: 0.05 
+## training RMSE: 0.745154 
+## testing RMSE: 0.986895 
+########################################################
+############# results of GA_LS without eps method: 
+## dataset: movelens 100k 
+## number of latent features: 20 
+## number of training iteratins: 100 
+## pop_size: 50 
+## crossover: linear_combinaiton_CX 
+## crossover prob: 0.9 
+## mutation: levyMut 
+## mutation prob: 0.2 
+## local search: wnmf_LS 
+## local search prob: 0.2 
+## new random individuals ratio: 0.05 
+## training RMSE: 0.745186 
+## testing RMSE: 1.006333 
+########################################################
