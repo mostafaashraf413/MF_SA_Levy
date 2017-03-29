@@ -345,3 +345,744 @@
 ## training RMSE: 0.745186 
 ## testing RMSE: 1.006333 
 ########################################################
+############# results of GA_LS method: 
+## dataset: movelens 100k 
+## number of latent features: 20 
+## number of training iteratins: 100 
+## pop_size: 50 
+## crossover: linear_combinaiton_CX 
+## crossover prob: 0.9 
+## mutation: levyMut 
+## mutation prob: 0.2 
+## local search: wnmf_LS 
+## local search prob: 0.2 
+## new random individuals ratio: 0.05 
+## training RMSE: 0.750297 
+## testing RMSE: 0.992876 
+########################################################
+############# results of GA_LS method: 
+## dataset: movelens 100k 
+## number of latent features: 20 
+## number of training iteratins: 100 
+## pop_size: 50 
+## crossover: linear_combinaiton_CX 
+## crossover prob: 0.9 
+## mutation: levyMut 
+## mutation prob: 0.4 
+## local search: wnmf_LS 
+## local search prob: 0.2 
+## new random individuals ratio: 0.05 
+## training RMSE: 0.755914 
+## testing RMSE: 0.991449 
+########################################################
+############# results of GA_LS with mantegna_levy method: 
+## dataset: movelens 100k 
+## number of latent features: 20 
+## number of training iteratins: 100 
+## pop_size: 50 
+## crossover: linear_combinaiton_CX 
+## crossover prob: 0.9 
+## mutation: levyMut 
+## mutation prob: 0.4 
+## local search: wnmf_LS 
+## local search prob: 0.2 
+## new random individuals ratio: 0.05 
+## training RMSE: 0.727940 
+## testing RMSE: 1.038197 
+########################################################
+############# results of GA_LS with mantegna_levy method: 
+## dataset: movelens 100k 
+## number of latent features: 20 
+## number of training iteratins: 100 
+## pop_size: 50 
+## crossover: linear_combinaiton_CX 
+## crossover prob: 0.9 
+## mutation: levyMut 
+## mutation prob: 0.6 
+## local search: wnmf_LS 
+## local search prob: 0.2 
+## new random individuals ratio: 0.05 
+## training RMSE: 0.747616 
+## testing RMSE: 1.022428 
+########################################################
+############# results of GA_LS with mantegna_levy method: 
+## dataset: movelens 100k 
+## number of latent features: 20 
+## number of training iteratins: 100 
+## pop_size: 50 
+## crossover: linear_combinaiton_CX 
+## crossover prob: 0.9 
+## mutation: levyMut 
+## mutation prob: 0.6 
+## local search: wnmf_LS 
+## local search prob: 0.1 
+## new random individuals ratio: 0.05 
+## training RMSE: 0.788271 
+## testing RMSE: 0.993574 
+########################################################
+############# results of GA_LS with mantegna_levy method: 
+## dataset: movelens 100k 
+## number of latent features: 20 
+## number of training iteratins: 100 
+## pop_size: 50 
+## crossover: linear_combinaiton_CX 
+## crossover prob: 0.9 
+## mutation: levyMut 
+## mutation prob: 0.6 
+## local search: wnmf_LS 
+## local search prob: 0.1 
+## new random individuals ratio: 0.05 
+## training RMSE: 0.798242 
+## testing RMSE: 0.982866 
+########################################################
+############# results of GA_LS with mantegna_levy method: 
+## dataset: movelens 100k 
+## number of latent features: 20 
+## number of training iteratins: 100 
+## pop_size: 50 
+## crossover: linear_combinaiton_CX 
+## crossover prob: 0.9 
+## mutation: levyMut 
+## mutation prob: 0.2 
+## local search: wnmf_LS 
+## local search prob: 0.1 
+## new random individuals ratio: 0.05 
+## training RMSE: 0.768241 
+## testing RMSE: 1.000842 
+########################################################
+############# results of GA_LS method: 
+## dataset: movelens 100k 
+## number of latent features: 20 
+## number of training iteratins: 100 
+## pop_size: 50 
+## crossover: linear_combinaiton_CX 
+## crossover prob: 0.9 
+## mutation: mMut 
+## mutation prob: 0.05 
+## local search: wnmf_LS 
+## local search prob: 0.1 
+## new random individuals ratio: 0.05 
+## training RMSE: 0.780136 
+## testing RMSE: 0.983808 
+########################################################
+############# results of GA_LS method: 
+## dataset: movelens 100k 
+## number of latent features: 20 
+## number of training iteratins: 100 
+## pop_size: 50 
+## crossover: linear_combinaiton_CX 
+## crossover prob: 0.9 
+## mutation: mMut 
+## mutation prob: 0.05 
+## local search: wnmf_LS 
+## local search prob: 0.2 
+## new random individuals ratio: 0.05 
+## training RMSE: 0.735912 
+## testing RMSE: 1.002553 
+########################################################
+############# results of GA_LS method: 
+## dataset: movelens 100k 
+## number of latent features: 20 
+## number of training iteratins: 100 
+## pop_size: 50 
+## crossover: linear_combinaiton_CX 
+## crossover prob: 0.9 
+## mutation: mMut 
+## mutation prob: 0.05 
+## local search: wnmf_LS 
+## local search prob: 0.2 
+## new random individuals ratio: 0.05 
+## training RMSE: 0.690708 
+## testing RMSE: 1.037321 
+########################################################
+############# results of GA_LS method: 
+## dataset: movelens 100k 
+## number of latent features: 20 
+## number of training iteratins: 100 
+## pop_size: 50 
+## crossover: linear_combinaiton_CX 
+## crossover prob: 0.9 
+## mutation: levyMut 
+## mutation prob: 0.4 
+## local search: wnmf_LS 
+## local search prob: 0.0 
+## new random individuals ratio: 0.05 
+## training RMSE: 1.187138 
+## testing RMSE: 1.175022 
+########################################################
+############# results of GA_LS method: 
+## dataset: movelens 100k 
+## number of latent features: 20 
+## number of training iteratins: 100 
+## pop_size: 50 
+## crossover: linear_combinaiton_CX 
+## crossover prob: 0.9 
+## mutation: levyMut 
+## mutation prob: 0.4 
+## local search: wnmf_LS 
+## local search prob: 0.0 
+## new random individuals ratio: 0.05 
+## training RMSE: 1.409063 
+## testing RMSE: 1.397494 
+########################################################
+############# results of GA_LS method: 
+## dataset: movelens 100k 
+## number of latent features: 20 
+## number of training iteratins: 100 
+## pop_size: 50 
+## crossover: linear_combinaiton_CX 
+## crossover prob: 0.9 
+## mutation: levyMut 
+## mutation prob: 0.4 
+## local search: wnmf_LS 
+## local search prob: 0.1 
+## new random individuals ratio: 0.05 
+## training RMSE: 0.753535 
+## testing RMSE: 0.994841 
+########################################################
+############# results of GA_LS method: 
+## dataset: movelens 100k 
+## number of latent features: 20 
+## number of training iteratins: 100 
+## pop_size: 50 
+## crossover: linear_combinaiton_CX 
+## crossover prob: 0.9 
+## mutation: levyMut 
+## mutation prob: 0.4 
+## local search: wnmf_LS 
+## local search prob: 0.05 
+## new random individuals ratio: 0.05 
+## training RMSE: 0.692545 
+## testing RMSE: 1.027487 
+########################################################
+############# results of GA_LS method: 
+## dataset: movelens 100k 
+## number of latent features: 20 
+## number of training iteratins: 100 
+## pop_size: 50 
+## crossover: linear_combinaiton_CX 
+## crossover prob: 0.9 
+## mutation: levyMut 
+## mutation prob: 0.4 
+## local search: wnmf_LS 
+## local search prob: 0.01 
+## new random individuals ratio: 0.05 
+## training RMSE: 0.786615 
+## testing RMSE: 0.999062 
+########################################################
+############# results of GA_LS method: 
+## dataset: movelens 100k 
+## number of latent features: 20 
+## number of training iteratins: 100 
+## pop_size: 50 
+## crossover: linear_combinaiton_CX 
+## crossover prob: 0.9 
+## mutation: levyMut 
+## mutation prob: 0.4 
+## local search: wnmf_LS 
+## local search prob: 0.01 
+## new random individuals ratio: 0.05 
+## training RMSE: 0.793361 
+## testing RMSE: 1.000443 
+########################################################
+############# results of GA_LS method: 
+## dataset: movelens 100k 
+## number of latent features: 20 
+## number of training iteratins: 100 
+## pop_size: 50 
+## crossover: linear_combinaiton_CX 
+## crossover prob: 0.9 
+## mutation: levyMut 
+## mutation prob: 0.4 
+## local search: wnmf_LS 
+## local search prob: 0.01 
+## new random individuals ratio: 0.05 
+## training RMSE: 0.808188 
+## testing RMSE: 1.000920 
+########################################################
+############# results of GA_LS method: 
+## dataset: movelens 100k 
+## number of latent features: 20 
+## number of training iteratins: 100 
+## pop_size: 50 
+## crossover: linear_combinaiton_CX 
+## crossover prob: 0.9 
+## mutation: levyMut 
+## mutation prob: 0.4 
+## local search: wnmf_LS 
+## local search prob: 0.2 
+## new random individuals ratio: 0.05 
+## training RMSE: 0.670612 
+## testing RMSE: 1.115834 
+########################################################
+############# results of GA_LS method: 
+## dataset: movelens 100k 
+## number of latent features: 20 
+## number of training iteratins: 100 
+## pop_size: 50 
+## crossover: linear_combinaiton_CX 
+## crossover prob: 0.9 
+## mutation: levyMut 
+## mutation prob: 0.4 
+## local search: wnmf_LS 
+## local search prob: 0.9 
+## new random individuals ratio: 0.05 
+## training RMSE: 0.674158 
+## testing RMSE: 1.134342 
+########################################################
+############# results of GA_LS method: 
+## dataset: movelens 100k 
+## number of latent features: 20 
+## number of training iteratins: 100 
+## pop_size: 50 
+## crossover: linear_combinaiton_CX 
+## crossover prob: 0.9 
+## mutation: levyMut 
+## mutation prob: 0.4 
+## local search: wnmf_LS 
+## local search prob: 0.2 
+## new random individuals ratio: 0.05 
+## training RMSE: 0.671692 
+## testing RMSE: 1.118242 
+########################################################
+############# results of GA_LS method: 
+## dataset: movelens 100k 
+## number of latent features: 20 
+## number of training iteratins: 100 
+## pop_size: 50 
+## crossover: linear_combinaiton_CX 
+## crossover prob: 0.9 
+## mutation: levyMut 
+## mutation prob: 0.4 
+## local search: wnmf_LS 
+## local search prob: 0.2 
+## new random individuals ratio: 0.05 
+## training RMSE: 0.736474 
+## testing RMSE: 1.040764 
+########################################################
+############# results of GA_LS method: 
+## dataset: movelens 100k 
+## number of latent features: 20 
+## number of training iteratins: 100 
+## pop_size: 50 
+## crossover: linear_combinaiton_CX 
+## crossover prob: 0.9 
+## mutation: levyMut 
+## mutation prob: 0.4 
+## local search: wnmf_LS 
+## local search prob: 0.1 
+## new random individuals ratio: 0.05 
+## training RMSE: 0.770674 
+## testing RMSE: 1.017729 
+########################################################
+############# results of GA_LS method: 
+## dataset: movelens 100k 
+## number of latent features: 20 
+## number of training iteratins: 100 
+## pop_size: 50 
+## crossover: linear_combinaiton_CX 
+## crossover prob: 0.9 
+## mutation: levyMut 
+## mutation prob: 0.2 
+## local search: wnmf_LS 
+## local search prob: 0.1 
+## new random individuals ratio: 0.05 
+## training RMSE: 0.753924 
+## testing RMSE: 1.017041 
+########################################################
+############# results of GA_LS method: 
+## dataset: movelens 100k 
+## number of latent features: 20 
+## number of training iteratins: 100 
+## pop_size: 50 
+## crossover: linear_combinaiton_CX 
+## crossover prob: 0.9 
+## mutation: levyMut 
+## mutation prob: 0.2 
+## local search: wnmf_LS 
+## local search prob: 0.1 
+## new random individuals ratio: 0.05 
+## training RMSE: 0.756530 
+## testing RMSE: 1.004815 
+########################################################
+############# results of GA_LS method: 
+## dataset: movelens 100k 
+## number of latent features: 20 
+## number of training iteratins: 100 
+## pop_size: 50 
+## crossover: linear_combinaiton_CX 
+## crossover prob: 0.9 
+## mutation: levyMut 
+## mutation prob: 0.2 
+## local search: wnmf_LS 
+## local search prob: 0.1 
+## new random individuals ratio: 0.05 
+## training RMSE: 0.772569 
+## testing RMSE: 0.975400 
+########################################################
+############# results of GA_LS method: 
+## dataset: movelens 100k 
+## number of latent features: 20 
+## number of training iteratins: 100 
+## pop_size: 50 
+## crossover: linear_combinaiton_CX 
+## crossover prob: 0.9 
+## mutation: levyMut 
+## mutation prob: 0.2 
+## local search: wnmf_LS 
+## local search prob: 0.1 
+## new random individuals ratio: 0.05 
+## training RMSE: 0.737195 
+## testing RMSE: 1.034913 
+########################################################
+############# results of GA_LS method: 
+## dataset: movelens 100k 
+## number of latent features: 20 
+## number of training iteratins: 100 
+## pop_size: 50 
+## crossover: linear_combinaiton_CX 
+## crossover prob: 0.9 
+## mutation: levyMut 
+## mutation prob: 0.2 
+## local search: wnmf_LS 
+## local search prob: 0.1 
+## new random individuals ratio: 0.05 
+## training RMSE: 0.755472 
+## testing RMSE: 0.999478 
+########################################################
+############# results of GA_LS method: 
+## dataset: movelens 100k 
+## number of latent features: 20 
+## number of training iteratins: 100 
+## pop_size: 50 
+## crossover: linear_combinaiton_CX 
+## crossover prob: 0.9 
+## mutation: levyMut 
+## mutation prob: 0.0 
+## local search: wnmf_LS 
+## local search prob: 0.1 
+## new random individuals ratio: 0.05 
+## training RMSE: 0.758736 
+## testing RMSE: 0.974227 
+########################################################
+############# results of GA_LS method: 
+## dataset: movelens 100k 
+## number of latent features: 20 
+## number of training iteratins: 100 
+## pop_size: 50 
+## crossover: linear_combinaiton_CX 
+## crossover prob: 0.9 
+## mutation: levyMut 
+## mutation prob: 0.4 
+## local search: wnmf_LS 
+## local search prob: 0.1 
+## new random individuals ratio: 0.05 
+## training RMSE: 0.782626 
+## testing RMSE: 0.981507 
+########################################################
+############# results of WNMF method: 
+## dataset: movelens 1m 
+## number of latent features: 50 
+## number of training iteratins: 100 
+## training RMSE: 0.778479 
+## testing RMSE: 0.942166 
+########################################################
+############# results of WNMF method: 
+## dataset: movelens 100k 
+## number of latent features: 50 
+## number of training iteratins: 100 
+## training RMSE: 0.616958 
+## testing RMSE: 1.048600 
+########################################################
+############# results of SGD_bias method: 
+## dataset: movelens 100k 
+## number of latent features: 50 
+## number of training iteratins: 100 
+## learning rate: 0.01 
+## regularization factor: 0.02 
+## training RMSE: 0.283443 
+## testing RMSE: 1.032655 
+########################################################
+############# results of SGD_bias method: 
+## dataset: movelens 100k 
+## number of latent features: 20 
+## number of training iteratins: 100 
+## learning rate: 0.01 
+## regularization factor: 0.02 
+## training RMSE: 0.519372 
+## testing RMSE: 1.044376 
+########################################################
+############# results of GA_LS method: 
+## dataset: movelens 100k 
+## number of latent features: 20 
+## number of training iteratins: 100 
+## pop_size: 100 
+## crossover: linear_combinaiton_CX 
+## crossover prob: 0.9 
+## mutation: levyMut 
+## mutation prob: 0.4 
+## local search: wnmf_LS 
+## local search prob: 0.1 
+## new random individuals ratio: 0.05 
+## training RMSE: 0.729263 
+## testing RMSE: 1.028458 
+########################################################
+############# results of GA_LS method: 
+## dataset: movelens 100k 
+## number of latent features: 20 
+## number of training iteratins: 100 
+## pop_size: 50 
+## crossover: linear_combinaiton_CX 
+## crossover prob: 0.9 
+## mutation: levyMut 
+## mutation prob: 0.4 
+## local search: wnmf_LS 
+## local search prob: 0.1 
+## new random individuals ratio: 0.05 
+## training RMSE: 0.778949 
+## testing RMSE: 0.987822 
+########################################################
+############# results of GA_LS method: 
+## dataset: movelens 100k 
+## number of latent features: 20 
+## number of training iteratins: 100 
+## pop_size: 50 
+## crossover: linear_combinaiton_CX 
+## crossover prob: 0.9 
+## mutation: levyMut 
+## mutation prob: 0.5 
+## local search: wnmf_LS 
+## local search prob: 0.1 
+## new random individuals ratio: 0.05 
+## training RMSE: 0.774335 
+## testing RMSE: 1.008085 
+########################################################
+############# results of GA_LS method: 
+## dataset: movelens 100k 
+## number of latent features: 20 
+## number of training iteratins: 100 
+## pop_size: 50 
+## crossover: linear_combinaiton_CX 
+## crossover prob: 0.9 
+## mutation: levyMut 
+## mutation prob: 0.4 
+## local search: wnmf_LS 
+## local search prob: 0.1 
+## new random individuals ratio: 0.05 
+## training RMSE: 0.758436 
+## testing RMSE: 1.021660 
+########################################################
+############# results of GA_LS method: 
+## dataset: movelens 100k 
+## number of latent features: 20 
+## number of training iteratins: 100 
+## pop_size: 50 
+## crossover: linear_combinaiton_CX 
+## crossover prob: 0.9 
+## mutation: levyMut 
+## mutation prob: 0.4 
+## local search: wnmf_LS 
+## local search prob: 0.1 
+## new random individuals ratio: 0.05 
+## training RMSE: 0.773786 
+## testing RMSE: 0.978517 
+########################################################
+############# results of SGD_bias method: 
+## dataset: movelens 100k 
+## number of latent features: 20 
+## number of training iteratins: 100 
+## learning rate: 0.01 
+## regularization factor: 0.02 
+## training RMSE: 0.518810 
+## testing RMSE: 1.045593 
+########################################################
+############# results of GA_LS method: 
+## dataset: movelens 100k 
+## number of latent features: 20 
+## number of training iteratins: 100 
+## pop_size: 50 
+## crossover: linear_combinaiton_CX 
+## crossover prob: 0.9 
+## mutation: levyMut 
+## mutation prob: 0.2 
+## local search: wnmf_LS 
+## local search prob: 0.1 
+## new random individuals ratio: 0.05 
+## training RMSE: 0.756172 
+## testing RMSE: 1.020094 
+########################################################
+############# results of GA_LS method: 
+## dataset: movelens 100k 
+## number of latent features: 50 
+## number of training iteratins: 100 
+## pop_size: 50 
+## crossover: linear_combinaiton_CX 
+## crossover prob: 0.9 
+## mutation: levyMut 
+## mutation prob: 0.4 
+## local search: wnmf_LS 
+## local search prob: 0.1 
+## new random individuals ratio: 0.05 
+## training RMSE: 0.647851 
+## testing RMSE: 1.078596 
+########################################################
+############# results of SGD_bias method: 
+## dataset: movelens 100k 
+## number of latent features: 50 
+## number of training iteratins: 100 
+## learning rate: 0.01 
+## regularization factor: 0.02 
+## training RMSE: 0.285350 
+## testing RMSE: 1.032904 
+########################################################
+############# results of GA_LS method: 
+## dataset: movelens 100k 
+## number of latent features: 100 
+## number of training iteratins: 100 
+## pop_size: 50 
+## crossover: linear_combinaiton_CX 
+## crossover prob: 0.9 
+## mutation: levyMut 
+## mutation prob: 0.4 
+## local search: wnmf_LS 
+## local search prob: 0.1 
+## new random individuals ratio: 0.05 
+## training RMSE: 0.555106 
+## testing RMSE: 1.284748 
+########################################################
+############# results of SGD_bias method: 
+## dataset: movelens 100k 
+## number of latent features: 100 
+## number of training iteratins: 100 
+## learning rate: 0.01 
+## regularization factor: 0.02 
+## training RMSE: 0.179944 
+## testing RMSE: 0.970845 
+########################################################
+############# results of WNMF method: 
+## dataset: movelens 100k 
+## number of latent features: 100 
+## number of training iteratins: 100 
+## training RMSE: 0.534079 
+## testing RMSE: 1.021655 
+########################################################
+############# results of GA_LS method: 
+## dataset: movelens 100k 
+## number of latent features: 100 
+## number of training iteratins: 100 
+## pop_size: 50 
+## crossover: linear_combinaiton_CX 
+## crossover prob: 0.9 
+## mutation: levyMut 
+## mutation prob: 0.4 
+## local search: wnmf_LS 
+## local search prob: 0.0 
+## new random individuals ratio: 0.05 
+## training RMSE: 19.664406 
+## testing RMSE: 19.665630 
+########################################################
+############# results of GA_LS method: 
+## dataset: movelens 100k 
+## number of latent features: 100 
+## number of training iteratins: 100 
+## pop_size: 50 
+## crossover: linear_combinaiton_CX 
+## crossover prob: 0.9 
+## mutation: levyMut 
+## mutation prob: 0.9 
+## local search: wnmf_LS 
+## local search prob: 0.0 
+## new random individuals ratio: 0.05 
+## training RMSE: 13.125887 
+## testing RMSE: 13.123685 
+########################################################
+############# results of GA_LS method: 
+## dataset: movelens 100k 
+## number of latent features: 100 
+## number of training iteratins: 100 
+## pop_size: 50 
+## crossover: linear_combinaiton_CX 
+## crossover prob: 0.9 
+## mutation: levyMut 
+## mutation prob: 0.9 
+## local search: wnmf_LS 
+## local search prob: 0.1 
+## new random individuals ratio: 0.05 
+## training RMSE: 0.696596 
+## testing RMSE: 1.076037 
+########################################################
+############# results of GA_LS method: 
+## dataset: movelens 100k 
+## number of latent features: 20 
+## number of training iteratins: 100 
+## pop_size: 50 
+## crossover: linear_combinaiton_CX 
+## crossover prob: 0.9 
+## mutation: levyMut 
+## mutation prob: 0.6 
+## local search: wnmf_LS 
+## local search prob: 0.1 
+## new random individuals ratio: 0.05 
+## training RMSE: 0.758351 
+## testing RMSE: 1.046283 
+########################################################
+############# results of GA_LS method: 
+## dataset: movelens 100k 
+## number of latent features: 20 
+## number of training iteratins: 100 
+## pop_size: 50 
+## crossover: linear_combinaiton_CX 
+## crossover prob: 0.9 
+## mutation: levyMut 
+## mutation prob: 0.6 
+## local search: wnmf_LS 
+## local search prob: 0.1 
+## new random individuals ratio: 0.05 
+## training RMSE: 0.737428 
+## testing RMSE: 1.057060 
+########################################################
+############# results of GA_LS method: 
+## dataset: movelens 100k 
+## number of latent features: 20 
+## number of training iteratins: 100 
+## pop_size: 50 
+## crossover: linear_combinaiton_CX 
+## crossover prob: 0.9 
+## mutation: levyMut 
+## mutation prob: 0.4 
+## local search: wnmf_LS 
+## local search prob: 0.1 
+## new random individuals ratio: 0.05 
+## training RMSE: 0.738127 
+## testing RMSE: 1.042834 
+########################################################
+############# results of GA_LS method: 
+## dataset: movelens 100k 
+## number of latent features: 20 
+## number of training iteratins: 100 
+## pop_size: 50 
+## crossover: linear_combinaiton_CX 
+## crossover prob: 0.9 
+## mutation: levyMut 
+## mutation prob: 0.4 
+## local search: wnmf_LS 
+## local search prob: 0.1 
+## new random individuals ratio: 0.05 
+## training RMSE: 0.742006 
+## testing RMSE: 1.006996 
+########################################################
+############# results of GA_LS method: 
+## dataset: movelens 100k 
+## number of latent features: 20 
+## number of training iteratins: 100 
+## pop_size: 50 
+## crossover: linear_combinaiton_CX 
+## crossover prob: 0.9 
+## mutation: levyMut 
+## mutation prob: 0.2 
+## local search: wnmf_LS 
+## local search prob: 0.0 
+## new random individuals ratio: 0.05 
+## training RMSE: 1.868933 
+## testing RMSE: 1.879766 
+########################################################

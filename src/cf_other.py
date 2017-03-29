@@ -175,7 +175,7 @@ def collaborative_filtering_SGD(training_data = None, rating_matrix_size = None,
 
 if __name__ == '__main__':
 
-    dataset = ('movelens 1m', '../resources/ml-1m/ratings.dat')
+    dataset = ('movelens 100k', '../resources/ml-100k/final_set.csv')
     training_data, test_data, matrix_size = utils.read_data_to_train_test(dataset[1], zero_index = False)
     
     #training_data, tmp, matrix_size = read_data_to_train_test("coll_filtering_datasets/ml-100k/ua.base", 
@@ -186,10 +186,10 @@ if __name__ == '__main__':
     #del tmp
     
     test_rating_mat = utils.create_matrix(test_data, matrix_size)
-    nFeatures = 50
+    nFeatures = 100
     nIterations=100
     
-    training_algorithm = 1
+    training_algorithm = 2
     
     #for SGD
     if training_algorithm == 1:
@@ -211,7 +211,7 @@ if __name__ == '__main__':
     
     #for WMNF
     elif training_algorithm == 2:
-        W, H = collaborative_filtering_wnmf(training_data = training_data, beta = 1,
+        W, H = collaborative_filtering_wnmf(training_data = training_data, beta = 0.5,
                             rating_matrix_size = matrix_size, nLatent_features=nFeatures, nIterations=nIterations)
         rating_matrix = W.dot(H)
         utils.print_results(uMat = W, iMat = H, nFeatures = nFeatures,

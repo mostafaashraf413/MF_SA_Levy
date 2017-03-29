@@ -9,6 +9,7 @@ from scipy.special import gamma
 from math import sin, pi
 
 dataset = ('movelens 100k', '../resources/ml-100k/final_set.csv')
+#dataset = ('movelens 1m', '../resources/ml-1m/ratings.dat')
 train, test, mSize = utils.read_data_to_train_test(dataset[1], zero_index = False)
 
 V = utils.create_matrix(train, mSize)
@@ -77,28 +78,31 @@ def mMut(ind, indpb):
     tools.mutGaussian(ind, mu, sigma, indpb)
     ind = np.maximum(ind, eps)
     return ind
-    
-def levyMut(ind, indpb):
-    ind += indpb * levy.rvs(alpha = 1.5, beta=0.5, size=(len(ind), len(ind[0])))
-    #ind = np.maximum(ind, eps)
-    return ind
-    
+
 def mixMut(ind, indpb):
     if random.random() < 0.5:
         return levyMut(ind, indpb)
     return mMut(ind, indpb)
      
-#def mantegna_levy_step(beta=1.5):
-#    sigma = gamma(1+beta) * sin(pi*beta/2.)
-#    sigma /= ( beta * gamma((1+beta)/2) * pow(2, (beta-1)/2.) )
-#    sigma = pow(sigma , 1./beta)
-#    
-#    u = random.normal(scale=sigma)
-#    v = abs(random.normal())
-#    
-#    step = u/pow(v, 1./beta)
-#    
-#    return step
+def mantegna_levy_step(beta=1.5):
+    sigma = gamma(1+beta) * sin(pi*beta/2.)
+    sigma /= ( beta * gamma((1+beta)/2) * pow(2, (beta-1)/2.) )
+    sigma = pow(sigma , 1./beta)
+    
+    u = np.random.normal(scale=sigma)
+    v = abs(np.random.normal())
+    
+    step = u/pow(v, 1./beta)
+    
+    return step
+    
+def levyMut(ind, indpb):
+    #ind += indpb * levy.rvs(alpha = 1.5, beta=0.5, size=(len(ind), len(ind[0])))
+    steps = np.array([mantegna_levy_step() for i in xrange(len(ind)*len(ind[0]))])
+    steps = steps.reshape((len(ind), len(ind[0])))
+    ind += 0.1 * steps
+    ind = np.maximum(ind, eps)
+    return ind
 
 def least_square_LS(ind):
     #ind[:mSize[0]] = np.linalg.lstsq(ind[mSize[0]:].T, V)[0]
@@ -139,13 +143,13 @@ if __name__ == '__main__':
     pop_size = 50
     mate = linear_combinaiton_CX
     mutate = levyMut
-    MUTPB = 0.2
+    MUTPB = 0.1
     local_search = wnmf_LS
     CXPB = 0.9
-    LSPB = 0.2
+    LSPB = 0.0
     new_inds_ratio = 0.05
     NGEN = 100
-    method_name = 'GA_LS without eps'
+    method_name = 'GA_LS tournSize1/10'
   
     pop = ga.run_ga(ind_size = mSize[0]+mSize[1], pop_size = pop_size, mate = mate, mutate = mutate, MUTPB = MUTPB, 
                     evaluate = evaluate_ind, local_search = local_search, CXPB = CXPB, LSPB = LSPB,
