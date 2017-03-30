@@ -31,7 +31,7 @@ def run_ga(new_inds_ratio = 0.1, CXPB = 0.9, MUTPB = 0.2, LSPB = 0.2, NGEN = 100
     toolbox.register("mate", mate) #tools.cxTwoPoint)
     toolbox.register("mutate", mutate, indpb=0.1)#tools.mutGaussian, mu=0, sigma=1, indpb=0.1)
     toolbox.register("local_search", local_search)
-    toolbox.register("select", select, tournsize=len(pop)/10)
+    toolbox.register("select", select, tournsize= 5)#len(pop)/10)
     toolbox.register("evaluate", evaluate)
 
     

@@ -1086,3 +1086,124 @@
 ## training RMSE: 1.868933 
 ## testing RMSE: 1.879766 
 ########################################################
+############# results of GA_LS: 
+## dataset: movelens 100k 
+## number of latent features: 20 
+## number of training iteratins: 100 
+## pop_size: 100 
+## crossover: linear_combinaiton_CX 
+## crossover prob: 0.9 
+## mutation: levyMut 
+## mutation prob: 0.2 
+## local search: wnmf_LS 
+## local search prob: 0.1 
+## new random individuals ratio: 0.05 
+## training RMSE: 0.846568 
+## testing RMSE: 0.956534 
+########################################################
+############# results of GA_LS normal_gen_inds method: 
+## dataset: movelens 100k 
+## number of latent features: 20 
+## number of training iteratins: 100 
+## pop_size: 100 
+## crossover: linear_combinaiton_CX 
+## crossover prob: 0.9 
+## mutation: levyMut 
+## mutation prob: 0.2 
+## local search: wnmf_LS 
+## local search prob: 0.1 
+## new random individuals ratio: 0.05 
+## training RMSE: 0.780605 
+## testing RMSE: 1.027791 
+########################################################
+############# results of GA_LS method: 
+## dataset: movelens 100k 
+## number of latent features: 20 
+## number of training iteratins: 100 
+## pop_size: 100 
+## crossover: linear_combinaiton_CX 
+## crossover prob: 0.9 
+## mutation: levyMut 
+## mutation prob: 0.2 
+## local search: wnmf_LS 
+## local search prob: 0.1 
+## new random individuals ratio: 0.05 
+## training RMSE: 0.832241 
+## testing RMSE: 0.956368 
+########################################################
+############# results of GA_LS method: 
+## dataset: movelens 100k 
+## number of latent features: 20 
+## number of training iteratins: 100 
+## pop_size: 50 
+## crossover: linear_combinaiton_CX 
+## crossover prob: 0.9 
+## mutation: levyMut 
+## mutation prob: 0.2 
+## local search: wnmf_LS 
+## local search prob: 0.1 
+## new random individuals ratio: 0.05 
+## training RMSE: 0.835843 
+## testing RMSE: 0.968022 
+########################################################
+############# results of SGD_bias method: 
+## dataset: movelens 100k 
+## number of latent features: 20 
+## number of training iteratins: 100 
+## learning rate: 0.01 
+## regularization factor: 0.02 
+## training RMSE: 0.518456 
+## testing RMSE: 1.060060 
+########################################################
+############# results of WNMF method: 
+## dataset: movelens 100k 
+## number of latent features: 20 
+## number of training iteratins: 100 
+## training RMSE: 0.731880 
+## testing RMSE: 1.037499 
+########################################################
+############# results of WNMF method: 
+## dataset: movelens 100k 
+## number of latent features: 20 
+## number of training iteratins: 50 
+## training RMSE: 0.808561 
+## testing RMSE: 0.996173 
+########################################################
+############# results of WNMF method: 
+## dataset: movelens 100k 
+## number of latent features: 20 
+## number of training iteratins: 25 
+## training RMSE: 0.861741 
+## testing RMSE: 0.987365 
+########################################################
+############# results of WNMF method: 
+## dataset: movelens 100k 
+## number of latent features: 20 
+## number of training iteratins: 10 
+## training RMSE: 0.909262 
+## testing RMSE: 0.980934 
+########################################################
+############# results of SGD_bias method: 
+## dataset: movelens 100k 
+## number of latent features: 20 
+## number of training iteratins: 50 
+## learning rate: 0.01 
+## regularization factor: 0.02 
+## training RMSE: 0.567249 
+## testing RMSE: 0.994561 
+########################################################
+############# results of GA_LS method: 
+## dataset: movelens 100k 
+## number of latent features: 20 
+## number of training iteratins: 100 
+## pop_size: 200 
+## crossover: linear_combinaiton_CX 
+## crossover prob: 0.9 
+## mutation: levyMut 
+## mutation prob: 0.2 
+## local search: wnmf_LS 
+## local search prob: 0.1 
+## new random individuals ratio: 0.05 
+## training RMSE: 0.848530 
+## testing RMSE: 0.955794 
+########################################################

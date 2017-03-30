@@ -8,18 +8,19 @@ from scipy.stats import levy_stable as levy
 from scipy.special import gamma
 from math import sin, pi
 
-dataset = ('movelens 100k', '../resources/ml-100k/final_set.csv')
-#dataset = ('movelens 1m', '../resources/ml-1m/ratings.dat')
+#dataset = ('movelens 100k', '../resources/ml-100k/final_set.csv')
+dataset = ('movelens 1m', '../resources/ml-1m/ratings.dat')
 train, test, mSize = utils.read_data_to_train_test(dataset[1], zero_index = False)
 
 V = utils.create_matrix(train, mSize)
 maskV = np.sign(V)
 
-r_dim = 20
+r_dim = 100
 eps = 1e-20
 
 def generate_ind():
     r = np.random.rand(r_dim)
+    #r = np.random.normal(scale=1./r_dim, size = r_dim)
     r = np.maximum(r, eps)
     return r
       
@@ -84,22 +85,22 @@ def mixMut(ind, indpb):
         return levyMut(ind, indpb)
     return mMut(ind, indpb)
      
-def mantegna_levy_step(beta=1.5):
+def mantegna_levy_step(beta=1.5, size=1):
     sigma = gamma(1+beta) * sin(pi*beta/2.)
     sigma /= ( beta * gamma((1+beta)/2) * pow(2, (beta-1)/2.) )
     sigma = pow(sigma , 1./beta)
     
-    u = np.random.normal(scale=sigma)
-    v = abs(np.random.normal())
+    u = np.random.normal(scale=sigma, size=size)
+    v = np.absolute(np.random.normal(size=size))
     
-    step = u/pow(v, 1./beta)
+    step = u/np.power(v, 1./beta)
     
     return step
     
 def levyMut(ind, indpb):
     #ind += indpb * levy.rvs(alpha = 1.5, beta=0.5, size=(len(ind), len(ind[0])))
-    steps = np.array([mantegna_levy_step() for i in xrange(len(ind)*len(ind[0]))])
-    steps = steps.reshape((len(ind), len(ind[0])))
+    steps = mantegna_levy_step(size=(ind.shape)) #np.array([mantegna_levy_step() for i in xrange(len(ind)*len(ind[0]))])
+    #steps = steps.reshape((len(ind), len(ind[0])))
     ind += 0.1 * steps
     ind = np.maximum(ind, eps)
     return ind
@@ -140,16 +141,16 @@ def sgd_LS(ind):
         
 if __name__ == '__main__':
     
-    pop_size = 50
+    pop_size = 100
     mate = linear_combinaiton_CX
     mutate = levyMut
-    MUTPB = 0.1
+    MUTPB = 0.2
     local_search = wnmf_LS
     CXPB = 0.9
-    LSPB = 0.0
+    LSPB = 0.1
     new_inds_ratio = 0.05
     NGEN = 100
-    method_name = 'GA_LS tournSize1/10'
+    method_name = 'GA_LS'
   
     pop = ga.run_ga(ind_size = mSize[0]+mSize[1], pop_size = pop_size, mate = mate, mutate = mutate, MUTPB = MUTPB, 
                     evaluate = evaluate_ind, local_search = local_search, CXPB = CXPB, LSPB = LSPB,
