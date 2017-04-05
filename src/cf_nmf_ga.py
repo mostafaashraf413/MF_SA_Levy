@@ -15,13 +15,13 @@ train, test, mSize = utils.read_data_to_train_test(dataset[1], zero_index = Fals
 V = utils.create_matrix(train, mSize)
 maskV = np.sign(V)
 
-r_dim = 100
+r_dim = 20
 eps = 1e-20
 
 def generate_ind():
     r = np.random.rand(r_dim)
     #r = np.random.normal(scale=1./r_dim, size = r_dim)
-    r = np.maximum(r, eps)
+    #r = np.maximum(r, eps)
     return r
       
 def evaluate_ind(ind):
@@ -102,7 +102,7 @@ def levyMut(ind, indpb):
     steps = mantegna_levy_step(size=(ind.shape)) #np.array([mantegna_levy_step() for i in xrange(len(ind)*len(ind[0]))])
     #steps = steps.reshape((len(ind), len(ind[0])))
     ind += 0.1 * steps
-    ind = np.maximum(ind, eps)
+    #ind = np.maximum(ind, eps)
     return ind
 
 def least_square_LS(ind):
@@ -111,7 +111,7 @@ def least_square_LS(ind):
     return ind
 
 def wnmf_LS(ind):
-    beta = 0.5
+    beta = 1
     W, H = ind[:mSize[0]], ind[mSize[0]:].T
     
     VH = np.dot(V, H.T)
@@ -142,7 +142,7 @@ def sgd_LS(ind):
 if __name__ == '__main__':
     
     pop_size = 100
-    mate = linear_combinaiton_CX
+    mate = mCX_double_vertically
     mutate = levyMut
     MUTPB = 0.2
     local_search = wnmf_LS
@@ -150,7 +150,7 @@ if __name__ == '__main__':
     LSPB = 0.1
     new_inds_ratio = 0.05
     NGEN = 100
-    method_name = 'GA_LS'
+    method_name = 'GA_LS-beta=1'
   
     pop = ga.run_ga(ind_size = mSize[0]+mSize[1], pop_size = pop_size, mate = mate, mutate = mutate, MUTPB = MUTPB, 
                     evaluate = evaluate_ind, local_search = local_search, CXPB = CXPB, LSPB = LSPB,
