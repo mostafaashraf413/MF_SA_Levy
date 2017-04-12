@@ -1525,3 +1525,108 @@
 ## training RMSE: 0.698967 
 ## testing RMSE: 0.942213 
 ########################################################
+############# results of GA_LS-beta=1 method: 
+## dataset: movelens 1m 
+## number of latent features: 20 
+## number of training iteratins: 100 
+## pop_size: 100 
+## crossover: mCX_double_vertically 
+## crossover prob: 0.9 
+## mutation: levyMut 
+## mutation prob: 0.2 
+## local search: wnmf_LS 
+## local search prob: 0.1 
+## new random individuals ratio: 0.05 
+## training RMSE: 0.823504 
+## testing RMSE: 0.945166 
+########################################################
+############# results of GA_LS-beta=1 method: 
+## dataset: movelens 100k 
+## number of latent features: 20 
+## number of training iteratins: 100 
+## pop_size: 100 
+## crossover: mCX_double_vertically 
+## crossover prob: 0.9 
+## mutation: levyMut 
+## mutation prob: 0.2 
+## local search: wnmf_LS 
+## local search prob: 0.1 
+## new random individuals ratio: 0.05 
+## training RMSE: 0.707453 
+## testing RMSE: 1.054407 
+########################################################
+############# results of GA_LS-beta=1 method: 
+## dataset: movelens 100k 
+## number of latent features: 20 
+## number of training iteratins: 100 
+## pop_size: 200 
+## crossover: mCX_double_vertically 
+## crossover prob: 0.9 
+## mutation: levyMut 
+## mutation prob: 0.2 
+## local search: wnmf_LS 
+## local search prob: 0.1 
+## new random individuals ratio: 0.05 
+## training RMSE: 0.706832 
+## testing RMSE: 1.051758 
+########################################################
+############# results of GA_LS-beta=1 method: 
+## dataset: movelens 100k 
+## number of latent features: 20 
+## number of training iteratins: 100 
+## pop_size: 100 
+## crossover: mCX_double_vertically 
+## crossover prob: 0.9 
+## mutation: levyMut 
+## mutation prob: 0.2 
+## local search: wnmf_LS 
+## local search prob: 0.0 
+## new random individuals ratio: 0.05 
+## training RMSE: 1.901032 
+## testing RMSE: 1.910225 
+########################################################
+############# results of GA_LS-beta=1 method: 
+## dataset: movelens 100k 
+## number of latent features: 20 
+## number of training iteratins: 100 
+## pop_size: 100 
+## crossover: linear_combinaiton_CX 
+## crossover prob: 0.9 
+## mutation: levyMut 
+## mutation prob: 0.6 
+## local search: wnmf_LS 
+## local search prob: 0.0 
+## new random individuals ratio: 0.5 
+## training RMSE: 1.809114 
+## testing RMSE: 1.803330 
+########################################################
+############# results of GA_LS-beta=1 method: 
+## dataset: movelens 100k 
+## number of latent features: 20 
+## number of training iteratins: 100 
+## pop_size: 100 
+## crossover: linear_combinaiton_CX 
+## crossover prob: 0.9 
+## mutation: levyMut 
+## mutation prob: 0.6 
+## local search: wnmf_LS 
+## local search prob: 0.0 
+## new random individuals ratio: 0.5 
+## training RMSE: 1.805211 
+## testing RMSE: 1.809689 
+########################################################
+############# results of GA_LS-beta=1 method: 
+## dataset: movelens 100k 
+## number of latent features: 20 
+## number of training iteratins: 100 
+## pop_size: 100 
+## crossover: linear_combinaiton_CX 
+## crossover prob: 0.9 
+## mutation: mMut 
+## mutation prob: 0.1 
+## local search: levyMut 
+## local search prob: 0.9 
+## new random individuals ratio: 0.5 
+## training RMSE: 1.806778 
+## testing RMSE: 1.799200 
+########################################################

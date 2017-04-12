@@ -4,12 +4,12 @@ from deap import tools
 import numpy as np
 import utils
 import ga_nmf_base as ga
-from scipy.stats import levy_stable as levy
+#from scipy.stats import levy_stable as levys
 from scipy.special import gamma
 from math import sin, pi
 
-#dataset = ('movelens 100k', '../resources/ml-100k/final_set.csv')
-dataset = ('movelens 1m', '../resources/ml-1m/ratings.dat')
+dataset = ('movelens 100k', '../resources/ml-100k/final_set.csv')
+#dataset = ('movelens 1m', '../resources/ml-1m/ratings.dat')
 train, test, mSize = utils.read_data_to_train_test(dataset[1], zero_index = False)
 
 V = utils.create_matrix(train, mSize)
@@ -84,25 +84,33 @@ def mixMut(ind, indpb):
     if random.random() < 0.5:
         return levyMut(ind, indpb)
     return mMut(ind, indpb)
-     
+
+##############################################
+sigma = None
 def mantegna_levy_step(beta=1.5, size=1):
-    sigma = gamma(1+beta) * sin(pi*beta/2.)
-    sigma /= ( beta * gamma((1+beta)/2) * pow(2, (beta-1)/2.) )
-    sigma = pow(sigma , 1./beta)
-    
+    global sigma
+    if sigma == None:
+        sigma = gamma(1+beta) * sin(pi*beta/2.)
+        sigma /= ( beta * gamma((1+beta)/2) * pow(2, (beta-1)/2.) )
+        sigma = pow(sigma , 1./beta)
     u = np.random.normal(scale=sigma, size=size)
     v = np.absolute(np.random.normal(size=size))
-    
     step = u/np.power(v, 1./beta)
     
     return step
+###############################################
     
-def levyMut(ind, indpb):
-    #ind += indpb * levy.rvs(alpha = 1.5, beta=0.5, size=(len(ind), len(ind[0])))
-    steps = mantegna_levy_step(size=(ind.shape)) #np.array([mantegna_levy_step() for i in xrange(len(ind)*len(ind[0]))])
-    #steps = steps.reshape((len(ind), len(ind[0])))
-    ind += 0.1 * steps
-    #ind = np.maximum(ind, eps)
+def levyMut(ind_, indpb=0.1):
+    ind = ind_.copy()
+    steps = mantegna_levy_step(size=(ind.shape)) 
+    
+    levy = 1.5*gamma(1.5)*sin(pi*1.5/2)/(pi*np.power(steps, 2))
+    
+    ind += 0.2 * levy
+    
+    if evaluate_ind(ind) < evaluate_ind(ind_):
+        ind_[:] = ind[:]
+    
     return ind
 
 def least_square_LS(ind):
@@ -142,13 +150,13 @@ def sgd_LS(ind):
 if __name__ == '__main__':
     
     pop_size = 100
-    mate = mCX_double_vertically
-    mutate = levyMut
-    MUTPB = 0.2
-    local_search = wnmf_LS
+    mate = linear_combinaiton_CX
+    mutate = mMut
+    MUTPB = 0.1
+    local_search = levyMut
     CXPB = 0.9
-    LSPB = 0.1
-    new_inds_ratio = 0.05
+    LSPB = 0.9
+    new_inds_ratio = 0.25
     NGEN = 100
     method_name = 'GA_LS-beta=1'
   
