@@ -1630,3 +1630,31 @@
 ## training RMSE: 1.806778 
 ## testing RMSE: 1.799200 
 ########################################################
+############# results of CS method: 
+## dataset: movelens 100k 
+## number of latent features: 20 
+## number of training iteratins: 100 
+## nCuckoos: 5 
+## local random walk: levy_lrw 
+## global random walk: levy_grw 
+## step function: mantegna_levy_step 
+## pa: 0.25 
+## lambda: 1.5 
+## stepSize: 0.01 
+## training RMSE: 2.045861 
+## testing RMSE: 2.053087 
+########################################################
+############# results of CS method: 
+## dataset: movelens 100k 
+## number of latent features: 20 
+## number of training iteratins: 100 
+## nCuckoos: 5 
+## local random walk: levy_lrw 
+## global random walk: levy_grw 
+## step function: mantegna_levy_step 
+## pa: 0.25 
+## lambda: 1.5 
+## stepSize: 0.01 
+## training RMSE: 2.102056 
+## testing RMSE: 2.101757 
+########################################################

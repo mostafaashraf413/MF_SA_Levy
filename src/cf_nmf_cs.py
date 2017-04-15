@@ -1,8 +1,15 @@
-from SwarmPackagePy import cso
-import utils
+#from deap import base, creator
+import random
+from deap import tools
 import numpy as np
+import utils
+from cs_nmf_base import *
+#from scipy.stats import levy_stable as levys
+from scipy.special import gamma
+from math import sin, pi
 
 dataset = ('movelens 100k', '../resources/ml-100k/final_set.csv')
+#dataset = ('movelens 1m', '../resources/ml-1m/ratings.dat')
 train, test, mSize = utils.read_data_to_train_test(dataset[1], zero_index = False)
 
 V = utils.create_matrix(train, mSize)
@@ -10,32 +17,92 @@ maskV = np.sign(V)
 
 r_dim = 20
 
+def generate_ind():
+    r = np.random.rand(r_dim)
+    #r = np.random.normal(scale=1./r_dim, size = r_dim)
+    #r = np.maximum(r, eps)
+    return r
+      
 def evaluate_ind(ind):
-    ind_ = np.array(ind)
-    ind_ = ind_.reshape((mSize[0]+mSize[1], r_dim))
-    W, H = ind_[:mSize[0]], ind_[mSize[0]:]
+    W, H = ind[:mSize[0]], ind[mSize[0]:]
     predV = maskV * W.dot(H.T)
     fit = utils.rmse(V, predV, len(train))#np.linalg.norm(V-predV)
     
     if np.min(ind)<0:
         fit *= 100
-    return fit
-   
+    return fit,
     
-if __name__ == '__main__':  
+def mantegna_levy_step(_lambda=1.5, size=None):
+    sigma = gamma(1+_lambda) * sin(pi*_lambda/2.)
+    sigma /= _lambda * gamma((1+_lambda)/2) * 2**((_lambda-1)/2.)
+    sigma = sigma**(1./_lambda)
+    u = np.random.normal(scale=sigma, size=size)
+    v = np.absolute(np.random.normal(size=size))
+    step = u/np.power(v, 1./_lambda)
     
-    method_name = 'Cuckoo_Search'
-    n = 5
-    iteration=10
-    nest=100
-    cs = cso(n = n, function = evaluate_ind, A=0, B=1, dimension = ((mSize[0]+mSize[1])*r_dim), iteration=iteration, pa=0.5, nest=nest)
+    return step
 
+def levy_grw(stepSize=0.01, _lambda=1.5, cuckoo=None, step=None):
+    #cuckoo = _cuckoo.clone()
+    levy = _lambda * gamma(_lambda)*sin(pi*_lambda/.2)/(pi*step**2)
+    cuckoo += stepSize * levy
+    
+    return cuckoo
+
+#http://stackoverflow.com/questions/15121048/does-a-heaviside-step-function-exist   
+def levy_lrw(stepSize=0.01, _lambda=1.5, pa = 0.25, cuckoo=None, cuckoos=None, step=None):
+    #cuckoo = _cuckoo.clone()
+    
+    #Heaviside function
+    H = 0.5 * (np.sign(pa-random.random()) + 1)
+    #select two different solutions by random permutations
+    c1,c2 = np.random.permutation(len(cuckoos))[0:2]
+    c1, c2 = cuckoos[c1], cuckoos[c2]
+    
+    cuckoo += stepSize * step * H * (c1-c2)
+    
+    return cuckoo
+
+    
+            
+if __name__ == '__main__':
+    pa = 0.25
+    nIter = 100
+    nCuckoos = 50
+    l_rw = levy_lrw
+    g_rw = levy_grw
+    stepFunction = mantegna_levy_step
+    _lambda = 1.5
+    stepSize = 0.2
+    method_name = "CS"
+    
+    cs = CS_NMF()
+    
+    cuckoos = cs.run_cs(pa = pa, nIter = nIter, ind_size = mSize[0]+mSize[1], nCuckoos = nCuckoos, ind_gen = generate_ind,
+                l_rw = l_rw, g_rw = g_rw, select = tools.selRandom, evaluate = evaluate_ind, stepFunction = stepFunction,
+                _lambda = _lambda, stepSize = stepSize, curve_label = method_name)
+                
     #printng results:
-    minInd = cs.get_Gbest()
+    minInd = min(cuckoos , key = lambda ind: ind.fitness.values[0])
     W, H = minInd[:mSize[0]], minInd[mSize[0]:].T
     ga_results = utils.print_results(uMat = W, iMat = H, nFeatures = r_dim, 
-                                train_data = train, test_data = test, 
-                                method_name = method_name, nIterations = iteration, 
-                                dataset_name = dataset[0], 
-                                method_details = [('nNest',nest), ('n',n)]
-                                )
+                                    train_data = train, test_data = test, 
+                                    method_name = method_name, nIterations = nIter, 
+                                    dataset_name = dataset[0], 
+                                    method_details = [('nCuckoos',nCuckoos),
+                                        ('local random walk', l_rw.__name__),
+                                        ('global random walk',g_rw.__name__),
+                                        ('step function', stepFunction.__name__),
+                                        ('pa', pa),
+                                        ('lambda', _lambda),
+                                        ('stepSize', stepSize)]
+                                    )
+    
+    
+    
+    
+    
+    
+    
+    
+    
