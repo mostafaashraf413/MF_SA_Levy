@@ -8,30 +8,29 @@ from cs_nmf_base import *
 from scipy.special import gamma
 from math import sin, pi
 
-#dataset = ('movelens 100k', '../resources/ml-100k/final_set.csv')
-dataset = ('movelens 1m', '../resources/ml-1m/ratings.dat')
+dataset = ('movelens 100k', '../resources/ml-100k/final_set.csv')
+#dataset = ('movelens 1m', '../resources/ml-1m/ratings.dat')
 train, test, mSize = utils.read_data_to_train_test(dataset[1], zero_index = False)
 
 V = utils.create_matrix(train, mSize)
 maskV = np.sign(V)
 
-r_dim = 50
+r_dim = 20
 
 def generate_ind():
     #r = np.random.rand(r_dim)
-    r = np.random.uniform(0.01,-0.01,size = r_dim)
-    #r = np.random.normal(scale=1./r_dim, size = r_dim)
+    r = np.random.uniform(1./r_dim, -1./r_dim, size = r_dim)
+    #r = np.random.normal(loc=.1, size = r_dim)
     #r = np.random.normal(size = r_dim)
-    #r = np.maximum(r, eps)
     return r
-      
+  
 def evaluate_ind(ind):
     W, H = ind[:mSize[0]], ind[mSize[0]:]
     predV = maskV * W.dot(H.T)
     fit = utils.rmse(V, predV, len(train))#np.linalg.norm(V-predV)
     
     #if np.min(ind)<0:
-    #    fit *= 100
+    #    fit *= 1000
     return fit,
     
 def mantegna_levy_step(_lambda=1.5, size=None):
@@ -78,7 +77,7 @@ if __name__ == '__main__':
     select = tools.selBest
     _lambda = 1.5
     maxS = 1e-3
-    minS = 1e-7
+    minS = 1e-5
     method_name = "CS"
     
     cs = CS_NMF()
@@ -103,12 +102,6 @@ if __name__ == '__main__':
                                         ('lambda', _lambda),
                                         ('stepSize', (maxS,minS))]
                                     )
-    
-    
-    
-    
-    
-    
     
     
     

@@ -2745,3 +2745,873 @@
 ## training RMSE: 0.656838 
 ## testing RMSE: 0.976643 
 ########################################################
+############# results of CS method: 
+## dataset: movelens 100k 
+## number of latent features: 20 
+## number of training iteratins: 150 
+## nCuckoos: 10 
+## local random walk: levy_lrw 
+## global random walk: levy_grw 
+## step function: mantegna_levy_step 
+## random walk selection: selBest 
+## pa: 0.1 
+## lambda: 1.5 
+## stepSize: (0.001, 1e-07) 
+## training RMSE: 37.000833 
+## testing RMSE: 36.917370 
+########################################################
+############# results of CS method: 
+## dataset: movelens 100k 
+## number of latent features: 20 
+## number of training iteratins: 150 
+## nCuckoos: 10 
+## local random walk: levy_lrw 
+## global random walk: levy_grw 
+## step function: mantegna_levy_step 
+## random walk selection: selBest 
+## pa: 0.1 
+## lambda: 1.5 
+## stepSize: (0.001, 1e-07) 
+## training RMSE: 1.145260 
+## testing RMSE: 1.150922 
+########################################################
+############# results of CS method: 
+## dataset: movelens 100k 
+## number of latent features: 20 
+## number of training iteratins: 150 
+## nCuckoos: 10 
+## local random walk: levy_lrw 
+## global random walk: levy_grw 
+## step function: mantegna_levy_step 
+## random walk selection: selBest 
+## pa: 0.1 
+## lambda: 1.5 
+## stepSize: (0.001, 1e-07) 
+## training RMSE: 1.209643 
+## testing RMSE: 1.210737 
+########################################################
+############# results of CS method: 
+## dataset: movelens 100k 
+## number of latent features: 20 
+## number of training iteratins: 150 
+## nCuckoos: 10 
+## local random walk: levy_lrw 
+## global random walk: levy_grw 
+## step function: mantegna_levy_step 
+## random walk selection: selBest 
+## pa: 0.1 
+## lambda: 1.5 
+## stepSize: (0.001, 1e-07) 
+## training RMSE: 1.152420 
+## testing RMSE: 1.160920 
+########################################################
+############# results of CS method: 
+## dataset: movelens 1m 
+## number of latent features: 50 
+## number of training iteratins: 150 
+## nCuckoos: 10 
+## local random walk: levy_lrw 
+## global random walk: levy_grw 
+## step function: mantegna_levy_step 
+## random walk selection: selBest 
+## pa: 0.1 
+## lambda: 1.5 
+## stepSize: (0.001, 1e-07) 
+## training RMSE: 1.140236 
+## testing RMSE: 1.143345 
+########################################################
+############# results of CS method: 
+## dataset: movelens 100k 
+## number of latent features: 100 
+## number of training iteratins: 150 
+## nCuckoos: 10 
+## local random walk: levy_lrw 
+## global random walk: levy_grw 
+## step function: mantegna_levy_step 
+## random walk selection: selBest 
+## pa: 0.1 
+## lambda: 1.5 
+## stepSize: (0.001, 1e-07) 
+## training RMSE: 1.141709 
+## testing RMSE: 1.133766 
+########################################################
+############# results of CS method: 
+## dataset: movelens 100k 
+## number of latent features: 100 
+## number of training iteratins: 150 
+## nCuckoos: 10 
+## local random walk: levy_lrw 
+## global random walk: levy_grw 
+## step function: mantegna_levy_step 
+## random walk selection: selBest 
+## pa: 0.1 
+## lambda: 1.5 
+## stepSize: (0.001, 1e-07) 
+## training RMSE: 21.536566 
+## testing RMSE: 21.343205 
+########################################################
+############# results of CS method: 
+## dataset: movelens 100k 
+## number of latent features: 20 
+## number of training iteratins: 150 
+## nCuckoos: 10 
+## local random walk: levy_lrw 
+## global random walk: levy_grw 
+## step function: mantegna_levy_step 
+## random walk selection: selBest 
+## pa: 0.1 
+## lambda: 1.5 
+## stepSize: (0.001, 1e-07) 
+## training RMSE: 5.469170 
+## testing RMSE: 5.462980 
+########################################################
+############# results of CS method: 
+## dataset: movelens 100k 
+## number of latent features: 20 
+## number of training iteratins: 150 
+## nCuckoos: 10 
+## local random walk: levy_lrw 
+## global random walk: levy_grw 
+## step function: mantegna_levy_step 
+## random walk selection: selBest 
+## pa: 0.1 
+## lambda: 1.5 
+## stepSize: (0.001, 1e-07) 
+## training RMSE: 5.651123 
+## testing RMSE: 5.680254 
+########################################################
+############# results of CS method: 
+## dataset: movelens 100k 
+## number of latent features: 20 
+## number of training iteratins: 150 
+## nCuckoos: 10 
+## local random walk: levy_lrw 
+## global random walk: levy_grw 
+## step function: mantegna_levy_step 
+## random walk selection: selBest 
+## pa: 0.1 
+## lambda: 1.5 
+## stepSize: (0.001, 1e-07) 
+## training RMSE: 1.153238 
+## testing RMSE: 1.149590 
+########################################################
+############# results of CS method: 
+## dataset: movelens 100k 
+## number of latent features: 10 
+## number of training iteratins: 150 
+## nCuckoos: 10 
+## local random walk: levy_lrw 
+## global random walk: levy_grw 
+## step function: mantegna_levy_step 
+## random walk selection: selBest 
+## pa: 0.1 
+## lambda: 1.5 
+## stepSize: (0.001, 1e-07) 
+## training RMSE: 1.343257 
+## testing RMSE: 1.339624 
+########################################################
+############# results of CS method: 
+## dataset: movelens 100k 
+## number of latent features: 5 
+## number of training iteratins: 150 
+## nCuckoos: 10 
+## local random walk: levy_lrw 
+## global random walk: levy_grw 
+## step function: mantegna_levy_step 
+## random walk selection: selBest 
+## pa: 0.1 
+## lambda: 1.5 
+## stepSize: (0.001, 1e-07) 
+## training RMSE: 2.391534 
+## testing RMSE: 2.396369 
+########################################################
+############# results of CS method: 
+## dataset: movelens 100k 
+## number of latent features: 30 
+## number of training iteratins: 150 
+## nCuckoos: 10 
+## local random walk: levy_lrw 
+## global random walk: levy_grw 
+## step function: mantegna_levy_step 
+## random walk selection: selBest 
+## pa: 0.1 
+## lambda: 1.5 
+## stepSize: (0.001, 1e-07) 
+## training RMSE: 1.142086 
+## testing RMSE: 1.141736 
+########################################################
+############# results of CS method: 
+## dataset: movelens 100k 
+## number of latent features: 40 
+## number of training iteratins: 150 
+## nCuckoos: 10 
+## local random walk: levy_lrw 
+## global random walk: levy_grw 
+## step function: mantegna_levy_step 
+## random walk selection: selBest 
+## pa: 0.1 
+## lambda: 1.5 
+## stepSize: (0.001, 1e-07) 
+## training RMSE: 1.140587 
+## testing RMSE: 1.132249 
+########################################################
+############# results of CS method: 
+## dataset: movelens 100k 
+## number of latent features: 40 
+## number of training iteratins: 150 
+## nCuckoos: 10 
+## local random walk: levy_lrw 
+## global random walk: levy_grw 
+## step function: mantegna_levy_step 
+## random walk selection: selBest 
+## pa: 0.1 
+## lambda: 1.5 
+## stepSize: (0.001, 1e-08) 
+## training RMSE: 1.148206 
+## testing RMSE: 1.142142 
+########################################################
+############# results of CS method: 
+## dataset: movelens 100k 
+## number of latent features: 20 
+## number of training iteratins: 150 
+## nCuckoos: 10 
+## local random walk: levy_lrw 
+## global random walk: levy_grw 
+## step function: mantegna_levy_step 
+## random walk selection: selBest 
+## pa: 0.1 
+## lambda: 1.5 
+## stepSize: (0.001, 1e-08) 
+## training RMSE: 1.158955 
+## testing RMSE: 1.157874 
+########################################################
+############# results of CS method: 
+## dataset: movelens 100k 
+## number of latent features: 20 
+## number of training iteratins: 150 
+## nCuckoos: 10 
+## local random walk: levy_lrw 
+## global random walk: levy_grw 
+## step function: mantegna_levy_step 
+## random walk selection: selBest 
+## pa: 0.1 
+## lambda: 1.5 
+## stepSize: (0.0001, 1e-08) 
+## training RMSE: 3.650623 
+## testing RMSE: 3.645640 
+########################################################
+############# results of CS method: 
+## dataset: movelens 100k 
+## number of latent features: 20 
+## number of training iteratins: 150 
+## nCuckoos: 10 
+## local random walk: levy_lrw 
+## global random walk: levy_grw 
+## step function: mantegna_levy_step 
+## random walk selection: selBest 
+## pa: 0.1 
+## lambda: 1.5 
+## stepSize: (0.001, 1e-08) 
+## training RMSE: 1.153142 
+## testing RMSE: 1.146938 
+########################################################
+############# results of CS method: 
+## dataset: movelens 100k 
+## number of latent features: 20 
+## number of training iteratins: 150 
+## nCuckoos: 10 
+## local random walk: levy_lrw 
+## global random walk: levy_grw 
+## step function: mantegna_levy_step 
+## random walk selection: selTournament 
+## pa: 0.1 
+## lambda: 1.5 
+## stepSize: (0.001, 1e-08) 
+## training RMSE: 2.451557 
+## testing RMSE: 2.460147 
+########################################################
+############# results of CS method: 
+## dataset: movelens 100k 
+## number of latent features: 20 
+## number of training iteratins: 150 
+## nCuckoos: 10 
+## local random walk: levy_lrw 
+## global random walk: levy_grw 
+## step function: mantegna_levy_step 
+## random walk selection: selTournament 
+## pa: 0.1 
+## lambda: 1.5 
+## stepSize: (0.001, 1e-08) 
+## training RMSE: 2.886377 
+## testing RMSE: 2.887904 
+########################################################
+############# results of CS method: 
+## dataset: movelens 100k 
+## number of latent features: 20 
+## number of training iteratins: 150 
+## nCuckoos: 10 
+## local random walk: levy_lrw 
+## global random walk: levy_grw 
+## step function: mantegna_levy_step 
+## random walk selection: selTournament 
+## pa: 0.1 
+## lambda: 1.5 
+## stepSize: (0.001, 1e-08) 
+## training RMSE: 3.288645 
+## testing RMSE: 3.281993 
+########################################################
+############# results of CS method: 
+## dataset: movelens 100k 
+## number of latent features: 20 
+## number of training iteratins: 150 
+## nCuckoos: 10 
+## local random walk: levy_lrw 
+## global random walk: levy_grw 
+## step function: mantegna_levy_step 
+## random walk selection: selTournament 
+## pa: 0.1 
+## lambda: 1.5 
+## stepSize: (0.001, 1e-08) 
+## training RMSE: 3.442921 
+## testing RMSE: 3.448911 
+########################################################
+############# results of CS method: 
+## dataset: movelens 100k 
+## number of latent features: 20 
+## number of training iteratins: 150 
+## nCuckoos: 10 
+## local random walk: levy_lrw 
+## global random walk: levy_grw 
+## step function: mantegna_levy_step 
+## random walk selection: selTournament 
+## pa: 0.1 
+## lambda: 1.5 
+## stepSize: (0.001, 1e-08) 
+## training RMSE: 1.599716 
+## testing RMSE: 1.605922 
+########################################################
+############# results of CS method: 
+## dataset: movelens 100k 
+## number of latent features: 20 
+## number of training iteratins: 150 
+## nCuckoos: 10 
+## local random walk: levy_lrw 
+## global random walk: levy_grw 
+## step function: mantegna_levy_step 
+## random walk selection: selBest 
+## pa: 0.1 
+## lambda: 1.5 
+## stepSize: (0.001, 1e-08) 
+## training RMSE: 1.146086 
+## testing RMSE: 1.149378 
+########################################################
+############# results of CS method: 
+## dataset: movelens 100k 
+## number of latent features: 20 
+## number of training iteratins: 150 
+## nCuckoos: 10 
+## local random walk: levy_lrw 
+## global random walk: levy_grw 
+## step function: mantegna_levy_step 
+## random walk selection: selBest 
+## pa: 0.1 
+## lambda: 1.5 
+## stepSize: (0.001, 1e-09) 
+## training RMSE: 1.147347 
+## testing RMSE: 1.146140 
+########################################################
+############# results of CS method: 
+## dataset: movelens 100k 
+## number of latent features: 20 
+## number of training iteratins: 150 
+## nCuckoos: 10 
+## local random walk: levy_lrw 
+## global random walk: levy_grw 
+## step function: mantegna_levy_step 
+## random walk selection: selBest 
+## pa: 0.1 
+## lambda: 1.5 
+## stepSize: (0.001, 1e-10) 
+## training RMSE: 1.146882 
+## testing RMSE: 1.151794 
+########################################################
+############# results of CS method: 
+## dataset: movelens 100k 
+## number of latent features: 20 
+## number of training iteratins: 150 
+## nCuckoos: 10 
+## local random walk: levy_lrw 
+## global random walk: levy_grw 
+## step function: mantegna_levy_step 
+## random walk selection: selBest 
+## pa: 0.1 
+## lambda: 1.5 
+## stepSize: (0.001, 1e-20) 
+## training RMSE: 1.154527 
+## testing RMSE: 1.154252 
+########################################################
+############# results of CS method: 
+## dataset: movelens 100k 
+## number of latent features: 20 
+## number of training iteratins: 150 
+## nCuckoos: 10 
+## local random walk: levy_lrw 
+## global random walk: levy_grw 
+## step function: mantegna_levy_step 
+## random walk selection: selBest 
+## pa: 0.1 
+## lambda: 1.5 
+## stepSize: (0.001, 1e-15) 
+## training RMSE: 1.145249 
+## testing RMSE: 1.152388 
+########################################################
+############# results of CS method: 
+## dataset: movelens 100k 
+## number of latent features: 20 
+## number of training iteratins: 150 
+## nCuckoos: 10 
+## local random walk: levy_lrw 
+## global random walk: levy_grw 
+## step function: mantegna_levy_step 
+## random walk selection: selBest 
+## pa: 0.1 
+## lambda: 1.5 
+## stepSize: (0.001, 1e-05) 
+## training RMSE: 1.147552 
+## testing RMSE: 1.146609 
+########################################################
+############# results of CS method: 
+## dataset: movelens 100k 
+## number of latent features: 20 
+## number of training iteratins: 150 
+## nCuckoos: 10 
+## local random walk: levy_lrw 
+## global random walk: levy_grw 
+## step function: mantegna_levy_step 
+## random walk selection: selBest 
+## pa: 0.1 
+## lambda: 1.5 
+## stepSize: (0.001, 1e-05) 
+## training RMSE: 1.148113 
+## testing RMSE: 1.145234 
+########################################################
+############# results of CS method: 
+## dataset: movelens 100k 
+## number of latent features: 20 
+## number of training iteratins: 150 
+## nCuckoos: 10 
+## local random walk: levy_lrw 
+## global random walk: levy_grw 
+## step function: mantegna_levy_step 
+## random walk selection: selBest 
+## pa: 0.1 
+## lambda: 1.5 
+## stepSize: (0.001, 1e-05) 
+## training RMSE: 3.704781 
+## testing RMSE: 3.705823 
+########################################################
+############# results of CS method: 
+## dataset: movelens 100k 
+## number of latent features: 20 
+## number of training iteratins: 150 
+## nCuckoos: 10 
+## local random walk: levy_lrw 
+## global random walk: levy_grw 
+## step function: mantegna_levy_step 
+## random walk selection: selBest 
+## pa: 0.1 
+## lambda: 1.5 
+## stepSize: (0.001, 1e-05) 
+## training RMSE: 1.153327 
+## testing RMSE: 1.155451 
+########################################################
+############# results of CS method: 
+## dataset: movelens 100k 
+## number of latent features: 20 
+## number of training iteratins: 150 
+## nCuckoos: 10 
+## local random walk: levy_lrw 
+## global random walk: levy_grw 
+## step function: mantegna_levy_step 
+## random walk selection: selBest 
+## pa: 0.1 
+## lambda: 1.5 
+## stepSize: (0.001, 1e-05) 
+## training RMSE: 3.638401 
+## testing RMSE: 3.685775 
+########################################################
+############# results of CS method: 
+## dataset: movelens 100k 
+## number of latent features: 20 
+## number of training iteratins: 150 
+## nCuckoos: 10 
+## local random walk: levy_lrw 
+## global random walk: levy_grw 
+## step function: mantegna_levy_step 
+## random walk selection: selBest 
+## pa: 0.1 
+## lambda: 1.5 
+## stepSize: (0.001, 1e-05) 
+## training RMSE: 2.574487 
+## testing RMSE: 2.578799 
+########################################################
+############# results of CS method: 
+## dataset: movelens 100k 
+## number of latent features: 20 
+## number of training iteratins: 150 
+## nCuckoos: 10 
+## local random walk: levy_lrw 
+## global random walk: levy_grw 
+## step function: mantegna_levy_step 
+## random walk selection: selBest 
+## pa: 0.1 
+## lambda: 1.5 
+## stepSize: (0.001, 1e-05) 
+## training RMSE: 1.148372 
+## testing RMSE: 1.144078 
+########################################################
+############# results of CS method: 
+## dataset: movelens 100k 
+## number of latent features: 20 
+## number of training iteratins: 150 
+## nCuckoos: 10 
+## local random walk: levy_lrw 
+## global random walk: levy_grw 
+## step function: mantegna_levy_step 
+## random walk selection: selBest 
+## pa: 0.1 
+## lambda: 1.5 
+## stepSize: (0.001, 1e-05) 
+## training RMSE: 1.167866 
+## testing RMSE: 1.164375 
+########################################################
+############# results of CS method: 
+## dataset: movelens 100k 
+## number of latent features: 20 
+## number of training iteratins: 150 
+## nCuckoos: 10 
+## local random walk: levy_lrw 
+## global random walk: levy_grw 
+## step function: mantegna_levy_step 
+## random walk selection: selBest 
+## pa: 0.1 
+## lambda: 1.5 
+## stepSize: (0.001, 1e-05) 
+## training RMSE: 1.156430 
+## testing RMSE: 1.156750 
+########################################################
+############# results of CS method: 
+## dataset: movelens 100k 
+## number of latent features: 20 
+## number of training iteratins: 150 
+## nCuckoos: 10 
+## local random walk: levy_lrw 
+## global random walk: levy_grw 
+## step function: mantegna_levy_step 
+## random walk selection: selBest 
+## pa: 0.1 
+## lambda: 1.5 
+## stepSize: (0.001, 1e-05) 
+## training RMSE: 1.158533 
+## testing RMSE: 1.156392 
+########################################################
+############# results of CS method: 
+## dataset: movelens 100k 
+## number of latent features: 20 
+## number of training iteratins: 150 
+## nCuckoos: 10 
+## local random walk: levy_lrw 
+## global random walk: levy_grw 
+## step function: mantegna_levy_step 
+## random walk selection: selBest 
+## pa: 0.1 
+## lambda: 1.5 
+## stepSize: (0.001, 1e-05) 
+## training RMSE: 1.143401 
+## testing RMSE: 1.140109 
+########################################################
+############# results of CS method: 
+## dataset: movelens 100k 
+## number of latent features: 20 
+## number of training iteratins: 150 
+## nCuckoos: 10 
+## local random walk: levy_lrw 
+## global random walk: levy_grw 
+## step function: mantegna_levy_step 
+## random walk selection: selBest 
+## pa: 0.1 
+## lambda: 1.5 
+## stepSize: (0.001, 1e-05) 
+## training RMSE: 1.148505 
+## testing RMSE: 1.152364 
+########################################################
+############# results of CS method: 
+## dataset: movelens 100k 
+## number of latent features: 20 
+## number of training iteratins: 150 
+## nCuckoos: 10 
+## local random walk: levy_lrw 
+## global random walk: levy_grw 
+## step function: mantegna_levy_step 
+## random walk selection: selBest 
+## pa: 0.1 
+## lambda: 1.5 
+## stepSize: (0.001, 1e-05) 
+## training RMSE: 3.706004 
+## testing RMSE: 3.700931 
+########################################################
+############# results of CS method: 
+## dataset: movelens 100k 
+## number of latent features: 20 
+## number of training iteratins: 150 
+## nCuckoos: 10 
+## local random walk: levy_lrw 
+## global random walk: levy_grw 
+## step function: mantegna_levy_step 
+## random walk selection: selBest 
+## pa: 0.1 
+## lambda: 1.5 
+## stepSize: (0.001, 1e-05) 
+## training RMSE: 1.138814 
+## testing RMSE: 1.142962 
+########################################################
+############# results of CS method: 
+## dataset: movelens 100k 
+## number of latent features: 20 
+## number of training iteratins: 150 
+## nCuckoos: 10 
+## local random walk: levy_lrw 
+## global random walk: levy_grw 
+## step function: mantegna_levy_step 
+## random walk selection: selBest 
+## pa: 0.1 
+## lambda: 1.5 
+## stepSize: (0.001, 1e-05) 
+## training RMSE: 1.153084 
+## testing RMSE: 1.147248 
+########################################################
+############# results of CS method: 
+## dataset: movelens 100k 
+## number of latent features: 20 
+## number of training iteratins: 150 
+## nCuckoos: 10 
+## local random walk: levy_lrw 
+## global random walk: levy_grw 
+## step function: mantegna_levy_step 
+## random walk selection: selBest 
+## pa: 0.1 
+## lambda: 1.5 
+## stepSize: (0.001, 1e-05) 
+## training RMSE: 1.153114 
+## testing RMSE: 1.147258 
+########################################################
+############# results of CS method: 
+## dataset: movelens 100k 
+## number of latent features: 20 
+## number of training iteratins: 150 
+## nCuckoos: 10 
+## local random walk: levy_lrw 
+## global random walk: levy_grw 
+## step function: mantegna_levy_step 
+## random walk selection: selBest 
+## pa: 0.1 
+## lambda: 1.5 
+## stepSize: (0.001, 1e-05) 
+## training RMSE: 1.155417 
+## testing RMSE: 1.156210 
+########################################################
+############# results of CS method: 
+## dataset: movelens 100k 
+## number of latent features: 20 
+## number of training iteratins: 150 
+## nCuckoos: 10 
+## local random walk: levy_lrw 
+## global random walk: levy_grw 
+## step function: mantegna_levy_step 
+## random walk selection: selBest 
+## pa: 0.1 
+## lambda: 1.5 
+## stepSize: (0.001, 1e-05) 
+## training RMSE: 1.143617 
+## testing RMSE: 1.145302 
+########################################################
+############# results of CS method: 
+## dataset: movelens 100k 
+## number of latent features: 20 
+## number of training iteratins: 150 
+## nCuckoos: 10 
+## local random walk: levy_lrw 
+## global random walk: levy_grw 
+## step function: mantegna_levy_step 
+## random walk selection: selBest 
+## pa: 0.1 
+## lambda: 1.5 
+## stepSize: (0.001, 1e-05) 
+## training RMSE: 1.155185 
+## testing RMSE: 1.149474 
+########################################################
+############# results of CS method: 
+## dataset: movelens 100k 
+## number of latent features: 20 
+## number of training iteratins: 150 
+## nCuckoos: 10 
+## local random walk: levy_lrw 
+## global random walk: levy_grw 
+## step function: mantegna_levy_step 
+## random walk selection: selBest 
+## pa: 0.1 
+## lambda: 1.5 
+## stepSize: (0.001, 1e-05) 
+## training RMSE: 1.418500 
+## testing RMSE: 1.426947 
+########################################################
+############# results of CS method: 
+## dataset: movelens 100k 
+## number of latent features: 20 
+## number of training iteratins: 150 
+## nCuckoos: 10 
+## local random walk: levy_lrw 
+## global random walk: levy_grw 
+## step function: mantegna_levy_step 
+## random walk selection: selBest 
+## pa: 0.1 
+## lambda: 1.5 
+## stepSize: (0.001, 1e-05) 
+## training RMSE: 1.147053 
+## testing RMSE: 1.149860 
+########################################################
+############# results of CS method: 
+## dataset: movelens 100k 
+## number of latent features: 20 
+## number of training iteratins: 150 
+## nCuckoos: 10 
+## local random walk: levy_lrw 
+## global random walk: levy_grw 
+## step function: mantegna_levy_step 
+## random walk selection: selBest 
+## pa: 0.1 
+## lambda: 1.5 
+## stepSize: (0.001, 1e-05) 
+## training RMSE: 1.152309 
+## testing RMSE: 1.157906 
+########################################################
+############# results of CS method: 
+## dataset: movelens 100k 
+## number of latent features: 20 
+## number of training iteratins: 150 
+## nCuckoos: 10 
+## local random walk: levy_lrw 
+## global random walk: levy_grw 
+## step function: mantegna_levy_step 
+## random walk selection: selBest 
+## pa: 0.2 
+## lambda: 1.5 
+## stepSize: (0.001, 1e-05) 
+## training RMSE: 1.147147 
+## testing RMSE: 1.154039 
+########################################################
+############# results of CS method: 
+## dataset: movelens 100k 
+## number of latent features: 20 
+## number of training iteratins: 150 
+## nCuckoos: 10 
+## local random walk: levy_lrw 
+## global random walk: levy_grw 
+## step function: mantegna_levy_step 
+## random walk selection: selBest 
+## pa: 0.25 
+## lambda: 1.5 
+## stepSize: (0.001, 1e-05) 
+## training RMSE: 1.148548 
+## testing RMSE: 1.153834 
+########################################################
+############# results of CS method: 
+## dataset: movelens 100k 
+## number of latent features: 20 
+## number of training iteratins: 150 
+## nCuckoos: 10 
+## local random walk: levy_lrw 
+## global random walk: levy_grw 
+## step function: mantegna_levy_step 
+## random walk selection: selBest 
+## pa: 0.3 
+## lambda: 1.5 
+## stepSize: (0.001, 1e-05) 
+## training RMSE: 1.155996 
+## testing RMSE: 1.146365 
+########################################################
+############# results of CS method: 
+## dataset: movelens 100k 
+## number of latent features: 20 
+## number of training iteratins: 150 
+## nCuckoos: 10 
+## local random walk: levy_lrw 
+## global random walk: levy_grw 
+## step function: mantegna_levy_step 
+## random walk selection: selBest 
+## pa: 0.1 
+## lambda: 1.5 
+## stepSize: (0.001, 1e-05) 
+## training RMSE: 1.153166 
+## testing RMSE: 1.150768 
+########################################################
+############# results of CS method: 
+## dataset: movelens 100k 
+## number of latent features: 20 
+## number of training iteratins: 150 
+## nCuckoos: 10 
+## local random walk: levy_lrw 
+## global random walk: levy_grw 
+## step function: mantegna_levy_step 
+## random walk selection: selBest 
+## pa: 0.1 
+## lambda: 1.5 
+## stepSize: (0.001, 1e-05) 
+## training RMSE: 1.153064 
+## testing RMSE: 1.132693 
+########################################################
+############# results of CS method: 
+## dataset: movelens 100k 
+## number of latent features: 20 
+## number of training iteratins: 150 
+## nCuckoos: 100 
+## local random walk: levy_lrw 
+## global random walk: levy_grw 
+## step function: mantegna_levy_step 
+## random walk selection: selBest 
+## pa: 0.1 
+## lambda: 1.5 
+## stepSize: (0.001, 1e-05) 
+## training RMSE: 1.157509 
+## testing RMSE: 1.167876 
+########################################################
+############# results of CS method: 
+## dataset: movelens 100k 
+## number of latent features: 20 
+## number of training iteratins: 150 
+## nCuckoos: 10 
+## local random walk: levy_lrw 
+## global random walk: levy_grw 
+## step function: mantegna_levy_step 
+## random walk selection: selBest 
+## pa: 0.1 
+## lambda: 1.5 
+## stepSize: (0.001, 1e-05) 
+## training RMSE: 1.147033 
+## testing RMSE: 1.151073 
+########################################################
+############# results of CS method: 
+## dataset: movelens 100k 
+## number of latent features: 20 
+## number of training iteratins: 150 
+## nCuckoos: 10 
+## local random walk: levy_lrw 
+## global random walk: levy_grw 
+## step function: mantegna_levy_step 
+## random walk selection: selBest 
+## pa: 0.1 
+## lambda: 1.5 
+## stepSize: (0.001, 1e-05) 
+## training RMSE: 1.155960 
+## testing RMSE: 1.155490 
+########################################################
