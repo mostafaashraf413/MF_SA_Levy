@@ -29,8 +29,8 @@ def evaluate_ind(ind):
     predV = maskV * W.dot(H.T)
     fit = utils.rmse(V, predV, len(train))#np.linalg.norm(V-predV)
     
-    if np.min(ind)<0:
-        fit *= 100
+    #if np.min(ind)<0:
+    #    fit *= 100
     return fit,
     
 def mCX_single(ind1, ind2):
@@ -149,7 +149,7 @@ def sgd_LS(ind):
         
 if __name__ == '__main__':
     
-    pop_size = 100
+    pop_size = 50
     mate = linear_combinaiton_CX
     mutate = mMut
     MUTPB = 0.1

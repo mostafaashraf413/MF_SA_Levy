@@ -8,18 +8,20 @@ from cs_nmf_base import *
 from scipy.special import gamma
 from math import sin, pi
 
-dataset = ('movelens 100k', '../resources/ml-100k/final_set.csv')
-#dataset = ('movelens 1m', '../resources/ml-1m/ratings.dat')
+#dataset = ('movelens 100k', '../resources/ml-100k/final_set.csv')
+dataset = ('movelens 1m', '../resources/ml-1m/ratings.dat')
 train, test, mSize = utils.read_data_to_train_test(dataset[1], zero_index = False)
 
 V = utils.create_matrix(train, mSize)
 maskV = np.sign(V)
 
-r_dim = 20
+r_dim = 50
 
 def generate_ind():
-    r = np.random.rand(r_dim)
+    #r = np.random.rand(r_dim)
+    r = np.random.uniform(0.01,-0.01,size = r_dim)
     #r = np.random.normal(scale=1./r_dim, size = r_dim)
+    #r = np.random.normal(size = r_dim)
     #r = np.maximum(r, eps)
     return r
       
@@ -28,8 +30,8 @@ def evaluate_ind(ind):
     predV = maskV * W.dot(H.T)
     fit = utils.rmse(V, predV, len(train))#np.linalg.norm(V-predV)
     
-    if np.min(ind)<0:
-        fit *= 100
+    #if np.min(ind)<0:
+    #    fit *= 100
     return fit,
     
 def mantegna_levy_step(_lambda=1.5, size=None):
@@ -40,47 +42,50 @@ def mantegna_levy_step(_lambda=1.5, size=None):
     v = np.absolute(np.random.normal(size=size))
     step = u/np.power(v, 1./_lambda)
     
+    sStep = np.sign(step)
+    step = np.abs(step)
+    step = np.maximum(step, 0.1)
+    step = step*sStep
+    
     return step
 
-def levy_grw(stepSize=0.01, _lambda=1.5, cuckoo=None, step=None):
-    #cuckoo = _cuckoo.clone()
+def levy_grw( _lambda=1.5, stepSize=0.01, cuckoo=None, step=None):
     levy = _lambda * gamma(_lambda)*sin(pi*_lambda/.2)/(pi*step**2)
     cuckoo += stepSize * levy
     
     return cuckoo
 
 #http://stackoverflow.com/questions/15121048/does-a-heaviside-step-function-exist   
-def levy_lrw(stepSize=0.01, _lambda=1.5, pa = 0.25, cuckoo=None, cuckoos=None, step=None):
-    #cuckoo = _cuckoo.clone()
-    
+def levy_lrw( _lambda=1.5, pa = 0.25, stepSize=0.01, c_cuckoo=None, s_cuckoo=None, step=None):
     #Heaviside function
     H = 0.5 * (np.sign(pa-random.random()) + 1)
-    #select two different solutions by random permutations
-    c1,c2 = np.random.permutation(len(cuckoos))[0:2]
-    c1, c2 = cuckoos[c1], cuckoos[c2]
+    ##select two different solutions by random permutations
+    c1,c2 = np.random.permutation(len(s_cuckoo))[0:2]
+    c1, c2 = s_cuckoo[c1], s_cuckoo[c2]
     
-    cuckoo += stepSize * step * H * (c1-c2)
-    
-    return cuckoo
+    c_cuckoo += stepSize * step * H * (c1-c2)
+    return c_cuckoo
 
     
             
 if __name__ == '__main__':
-    pa = 0.25
-    nIter = 100
-    nCuckoos = 50
+    pa = 0.1
+    nIter = 150
+    nCuckoos = 10
     l_rw = levy_lrw
     g_rw = levy_grw
     stepFunction = mantegna_levy_step
+    select = tools.selBest
     _lambda = 1.5
-    stepSize = 0.2
+    maxS = 1e-3
+    minS = 1e-7
     method_name = "CS"
     
     cs = CS_NMF()
     
     cuckoos = cs.run_cs(pa = pa, nIter = nIter, ind_size = mSize[0]+mSize[1], nCuckoos = nCuckoos, ind_gen = generate_ind,
-                l_rw = l_rw, g_rw = g_rw, select = tools.selRandom, evaluate = evaluate_ind, stepFunction = stepFunction,
-                _lambda = _lambda, stepSize = stepSize, curve_label = method_name)
+                l_rw = l_rw, g_rw = g_rw, select = select, evaluate = evaluate_ind, stepFunction = stepFunction,
+                _lambda = _lambda, max_stepSize = maxS, min_stepSize = minS, curve_label = method_name)
                 
     #printng results:
     minInd = min(cuckoos , key = lambda ind: ind.fitness.values[0])
@@ -93,9 +98,10 @@ if __name__ == '__main__':
                                         ('local random walk', l_rw.__name__),
                                         ('global random walk',g_rw.__name__),
                                         ('step function', stepFunction.__name__),
+                                        ('random walk selection', select.__name__),
                                         ('pa', pa),
                                         ('lambda', _lambda),
-                                        ('stepSize', stepSize)]
+                                        ('stepSize', (maxS,minS))]
                                     )
     
     
