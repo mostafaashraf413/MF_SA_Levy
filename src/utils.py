@@ -2,7 +2,7 @@ import numpy as np
 import random
 from math import sqrt
 
-def read_data_to_train_test(fileName, delimiter = ' ', train_size = 0.8, zero_index = True):
+def read_data_to_train_test(fileName, delimiter = ' ', train_size = 0.9, zero_index = True):
     test_data = None
     tmp_lst = []
     matrix_size = None

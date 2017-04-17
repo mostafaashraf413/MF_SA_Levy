@@ -64,7 +64,6 @@ class CS_NMF:
             cuckoos[ri] = cuckoo if cuckoo.fitness.values[0] < cuckoos[ri].fitness.values[0] else cuckoos[ri]
             
             worst_cuckoos = tools.selWorst(cuckoos, int(pa*nCuckoos))
-            #cuckoo = tools.selBest(cuckoos, 1)[0]
             new_cuckoos = map(lambda c: self.toolbox.l_ranWalk(stepSize, self.__clone(c), cuckoos, self.toolbox.stepFunction()), worst_cuckoos)
             fitnesses = map(self.toolbox.evaluate, new_cuckoos)  
             for i in xrange(len(new_cuckoos)):

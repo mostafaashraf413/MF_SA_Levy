@@ -29,8 +29,9 @@ def evaluate_ind(ind):
     predV = maskV * W.dot(H.T)
     fit = utils.rmse(V, predV, len(train))#np.linalg.norm(V-predV)
     
-    #if np.min(ind)<0:
-    #    fit *= 1000
+    #if np.min(predV)<0 or np.max(predV)>5:
+    #    fit *= 10
+    
     return fit,
     
 def mantegna_levy_step(_lambda=1.5, size=None):
@@ -58,30 +59,45 @@ def levy_grw( _lambda=1.5, stepSize=0.01, cuckoo=None, step=None):
 def levy_lrw( _lambda=1.5, pa = 0.25, stepSize=0.01, c_cuckoo=None, s_cuckoo=None, step=None):
     #Heaviside function
     H = 0.5 * (np.sign(pa-random.random()) + 1)
-    ##select two different solutions by random permutations
-    c1,c2 = np.random.permutation(len(s_cuckoo))[0:2]
-    c1, c2 = s_cuckoo[c1], s_cuckoo[c2]
+    #select two different solutions by random permutations
+    c1,c2 = tools.selTournament(s_cuckoo, 2, len(s_cuckoo))
+    #c1,c2 = np.random.permutation(len(s_cuckoo))[0:2]
+    #c1, c2 = s_cuckoo[c1], s_cuckoo[c2]
     
     c_cuckoo += stepSize * step * H * (c1-c2)
     return c_cuckoo
+    
+def levy_lrw_withBest( _lambda=1.5, pa = 0.25, stepSize=0.01, c_cuckoo=None, s_cuckoo=None, step=None):
+    #Heaviside function
+    H = 0.5 * (np.sign(pa-random.random()) + 1)
+    
+    c1 = tools.selBest(s_cuckoo, 1)[0]
+    c2 = tools.selRandom(s_cuckoo, 1)[0]        
+    c_cuckoo += stepSize * step * H * (c1-c2)
+    return c_cuckoo
+    
+def rand_cuckoos( _lambda, pa, stepSize, c_cuckoo=None, s_cuckoo=None, step=None):
+    c_cuckoo[:] = r = np.random.uniform(1./r_dim, -1./r_dim, size = c_cuckoo.shape)
+    return c_cuckoo
 
+def selTour(individuals, k):
+    return tools.selTournament(individuals, k, len(individuals))
     
             
 if __name__ == '__main__':
-    pa = 0.1
+    pa = 0.3
     nIter = 150
     nCuckoos = 10
-    l_rw = levy_lrw
+    l_rw = rand_cuckoos #levy_lrw #levy_lrw_withBest #
     g_rw = levy_grw
     stepFunction = mantegna_levy_step
-    select = tools.selBest
+    select = tools.selBest # selTour #
     _lambda = 1.5
     maxS = 1e-3
-    minS = 1e-5
+    minS = 1e-4
     method_name = "CS"
     
     cs = CS_NMF()
-    
     cuckoos = cs.run_cs(pa = pa, nIter = nIter, ind_size = mSize[0]+mSize[1], nCuckoos = nCuckoos, ind_gen = generate_ind,
                 l_rw = l_rw, g_rw = g_rw, select = select, evaluate = evaluate_ind, stepFunction = stepFunction,
                 _lambda = _lambda, max_stepSize = maxS, min_stepSize = minS, curve_label = method_name)
