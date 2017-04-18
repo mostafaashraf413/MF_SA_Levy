@@ -23,11 +23,7 @@ class CS_NMF:
         
     def step_decay_factor(self, _max, _min, nIter):
         return float(_max-_min)/nIter
-        
-    def rep_cuckoo(self, cuckoo):
-        cuckoo[:] = self.toolbox.nest(n=1)[0][:]
-        cuckoo.fitness.values = self.toolbox.evaluate(cuckoo)
-        return cuckoo
+         
     
     def run_cs(self, pa = 0.25, nIter = 100, ind_type = np.ndarray, ind_size = None, nCuckoos = 50, ind_gen = None,
                 l_rw = None, g_rw = None, select = tools.selRandom, evaluate = None, stepFunction = None, _lambda = 1.5,
@@ -59,7 +55,6 @@ class CS_NMF:
         min_fit_lst = []
         for g in range(nIter):
             
-            # global random walk:
             cuckoo = self.toolbox.select(cuckoos, 1)[0]
             step = self.toolbox.stepFunction()
             cuckoo = self.toolbox.g_ranWalk(stepSize, self.__clone(cuckoo), step)
@@ -68,18 +63,13 @@ class CS_NMF:
             ri = random.randint(0, nCuckoos-1)
             cuckoos[ri] = cuckoo if cuckoo.fitness.values[0] < cuckoos[ri].fitness.values[0] else cuckoos[ri]
             
-            #replace worst cuckoos
-            worst_cuckoos = tools.selWorst(cuckoos, int(pa*len(cuckoos)))
-            map(self.rep_cuckoo, worst_cuckoos)
-            
-            #local random walk:
-            best_cuckoo = tools.selBest(cuckoos, 1)[0]
-            new_cuckoos = map(lambda c: self.toolbox.l_ranWalk(stepSize, self.__clone(c), best_cuckoo, self.toolbox.stepFunction()), cuckoos)
+            worst_cuckoos = tools.selWorst(cuckoos, int(pa*nCuckoos))
+            new_cuckoos = map(lambda c: self.toolbox.l_ranWalk(stepSize, self.__clone(c), cuckoos, self.toolbox.stepFunction()), worst_cuckoos)
             fitnesses = map(self.toolbox.evaluate, new_cuckoos)  
             for i in xrange(len(new_cuckoos)):
-                cuckoos[i][:] = new_cuckoos[i].copy()
-                cuckoos[i].fitness.values = fitnesses[i]
-             
+                worst_cuckoos[i][:] = new_cuckoos[i].copy()
+                worst_cuckoos[i].fitness.values = fitnesses[i]
+            
             stepSize = stepSize - df
             
             # printing statistics

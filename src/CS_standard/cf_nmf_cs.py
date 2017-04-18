@@ -19,56 +19,82 @@ r_dim = 20
 
 def generate_ind():
     #r = np.random.rand(r_dim)
-    #r = np.random.uniform(5./r_dim, 0, size = r_dim)
-    r = np.random.normal(5./r_dim, .1, size = r_dim)
-    #r = np.random.randn(r_dim)*.1
+    r = np.random.uniform(1./r_dim, -1./r_dim, size = r_dim)
+    #r = np.random.normal(loc=.1, size = r_dim)
+    #r = np.random.normal(size = r_dim)
     return r
   
 def evaluate_ind(ind):
     W, H = ind[:mSize[0]], ind[mSize[0]:]
     predV = maskV * W.dot(H.T)
-
     fit = utils.rmse(V, predV, len(train))#np.linalg.norm(V-predV)
+    
+    #if np.min(predV)<0 or np.max(predV)>5:
+    #    fit *= 10
     
     return fit,
     
 def mantegna_levy_step(_lambda=1.5, size=None):
     sigma = gamma(1+_lambda) * sin(pi*_lambda/2.)
-    sigma /= _lambda * gamma((1+_lambda)/2.) * 2**((_lambda-1)/2.)
+    sigma /= _lambda * gamma((1+_lambda)/2) * 2**((_lambda-1)/2.)
     sigma = sigma**(1./_lambda)
-    u = np.random.randn(size[0], size[1])*sigma #normal(scale=sigma, size=size)
-    v = np.absolute(np.random.randn(size[0], size[1]))
+    u = np.random.normal(scale=sigma, size=size)
+    v = np.absolute(np.random.normal(size=size))
     step = u/np.power(v, 1./_lambda)
     
     sStep = np.sign(step)
     step = np.abs(step)
-    step = np.maximum(step, 2)
+    step = np.maximum(step, 0.1)
     step = step*sStep
     
     return step
 
 def levy_grw( _lambda=1.5, stepSize=0.01, cuckoo=None, step=None):
-    levy = _lambda * gamma(_lambda)*sin(pi*_lambda/2)/(pi*step**(2))
-    cuckoo += stepSize * levy 
+    levy = _lambda * gamma(_lambda)*sin(pi*_lambda/.2)/(pi*step**2)
+    cuckoo += stepSize * levy
     
     return cuckoo
- 
-def levy_lrw( _lambda=1.5, pa = 0.25, stepSize=0.01, c1=None, c2=None, step=None):  
-    c1 += stepSize * step * (c1-c2) * np.random.randn(c1.shape[0], c1.shape[1])
-    return c1
+
+#http://stackoverflow.com/questions/15121048/does-a-heaviside-step-function-exist   
+def levy_lrw( _lambda=1.5, pa = 0.25, stepSize=0.01, c_cuckoo=None, s_cuckoo=None, step=None):
+    #Heaviside function
+    H = 0.5 * (np.sign(pa-random.random()) + 1)
+    #select two different solutions by random permutations
+    #c1,c2 = tools.selTournament(s_cuckoo, 2, len(s_cuckoo))
+    c1,c2 = np.random.permutation(len(s_cuckoo))[0:2]
+    c1, c2 = s_cuckoo[c1], s_cuckoo[c2]
     
+    c_cuckoo += stepSize * step * H * (c1-c2)
+    return c_cuckoo
     
+def levy_lrw_withBest( _lambda=1.5, pa = 0.25, stepSize=0.01, c_cuckoo=None, s_cuckoo=None, step=None):
+    #Heaviside function
+    H = 0.5 * (np.sign(pa-random.random()) + 1)
+    
+    c1 = tools.selBest(s_cuckoo, 1)[0]
+    c2 = tools.selRandom(s_cuckoo, 1)[0]        
+    c_cuckoo += stepSize * step * H * (c1-c2)
+    return c_cuckoo
+    
+def rand_cuckoos( _lambda, pa, stepSize, c_cuckoo=None, s_cuckoo=None, step=None):
+    c_cuckoo[:] = r = np.random.uniform(1./r_dim, -1./r_dim, size = c_cuckoo.shape)
+    return c_cuckoo
+
+def selTour(individuals, k):
+    return tools.selTournament(individuals, k, len(individuals))
+    
+            
 if __name__ == '__main__':
     pa = 0.3
-    nIter = 100
+    nIter = 150
     nCuckoos = 10
     l_rw = levy_lrw #levy_lrw_withBest #rand_cuckoos #
     g_rw = levy_grw
     stepFunction = mantegna_levy_step
     select = tools.selBest # selTour #
     _lambda = 1.5
-    maxS = 1e-1
-    minS = 1e-2
+    maxS = 1e-3
+    minS = 1e-4
     method_name = "CS"
     
     cs = CS_NMF()
@@ -82,7 +108,7 @@ if __name__ == '__main__':
     ga_results = utils.print_results(uMat = W, iMat = H, nFeatures = r_dim, 
                                     train_data = train, test_data = test, 
                                     method_name = method_name, nIterations = nIter, 
-                                    dataset_name = dataset[0],
+                                    dataset_name = dataset[0], 
                                     method_details = [('nCuckoos',nCuckoos),
                                         ('local random walk', l_rw.__name__),
                                         ('global random walk',g_rw.__name__),
