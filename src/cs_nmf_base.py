@@ -25,13 +25,14 @@ class CS_NMF:
         return float(_max-_min)/nIter
         
     def rep_cuckoo(self, cuckoo):
-        cuckoo[:] = self.toolbox.nest(n=1)[0][:]
+        r_dim = cuckoo.shape[1]
+        cuckoo[:] = self.toolbox.nest(n=1)[0][:] #np.random.normal(5./r_dim, .1, size = cuckoo.shape)#
         cuckoo.fitness.values = self.toolbox.evaluate(cuckoo)
         return cuckoo
     
     def run_cs(self, pa = 0.25, nIter = 100, ind_type = np.ndarray, ind_size = None, nCuckoos = 50, ind_gen = None,
                 l_rw = None, g_rw = None, select = tools.selRandom, evaluate = None, stepFunction = None, _lambda = 1.5,
-                max_stepSize = 0.1, min_stepSize = 0.000001,curve_label = "CS"):
+                max_stepSize = 0.1, min_stepSize = 0.001,curve_label = "CS"):
                 
         df = self.step_decay_factor(max_stepSize, min_stepSize, nIter)
         stepSize = max_stepSize

@@ -187,8 +187,8 @@ if __name__ == '__main__':
     #del tmp
     
     test_rating_mat = utils.create_matrix(test_data, matrix_size)
-    nFeatures = 10
-    nIterations=150
+    nFeatures = 20
+    nIterations=100
     
     training_algorithm = 1
     

@@ -46,7 +46,7 @@ def print_results(uMat=None, iMat=None, predMat = None, nFeatures=None, train_da
     for d in method_details:
         results += '## %s: %s \n'%(str(d[0]), str(d[1]))
     
-    if predMat == None:
+    if uMat and iMat:
         predMat = uMat.dot(iMat)
     
     trainMat = create_matrix(train_data, predMat.shape)
