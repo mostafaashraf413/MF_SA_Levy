@@ -27,7 +27,8 @@ class CollaborativeFiltering_NMF(Annealer):
         
     def move(self):
         step = self.mantegna_levy_step()
-        self.state += self.levy_grw(step = step)
+        rw = self.levy_grw(step = step)
+        self.state += rw
     
     def energy(self):
         W, H = self.state[:mSize[0]], self.state[mSize[0]:]
@@ -63,27 +64,30 @@ if __name__ == '__main__':
     train, test, mSize = utils.read_data_to_train_test(dataset[1], zero_index = False)
     V = utils.create_matrix(train, mSize)
     maskV = np.sign(V)
-    r_dim = 20
+    r_dim = 50
     _lambda = 1.5
-    stepSize = 1e-2
+    stepSize = 1e-1
     
     cf = CollaborativeFiltering_NMF(V, r_dim, _lambda=_lambda, stepSize=stepSize)
-    cf.steps = 150
-    cf.updates = cf.steps/2
-    cf.Tmax=.1
-    cf.Tmin=.05
+    cf.steps = 200
+    cf.updates = cf.steps/5
+    cf.Tmax=.01
+    cf.Tmin=.001
     
-    # since our state is just a list, slice is the fastest way to copy
-    cf.copy_strategy = "slice"
+    cf.copy_strategy = "method"
     state, e = cf.anneal()
     
-    print ''
-    print 'Best Energy %f'%(e)
+    print ''#cf.auto(1)
     
     W, H = state[:mSize[0]], state[mSize[0]:].T
     sa_results = utils.print_results(predMat = W.dot(H), nFeatures = r_dim, 
                                     train_data = train, test_data = test, 
                                     method_name = method_name, nIterations = cf.steps, 
                                     dataset_name = dataset[0],
-                                    method_details = []
+                                    method_details = [
+                                    ('stepSize',stepSize),
+                                    ('lambda', _lambda),
+                                    ('Tmax',cf.Tmax),
+                                    ('Tmin',cf.Tmin)
+                                    ]
                                     )
