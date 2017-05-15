@@ -27,8 +27,7 @@ def read_data_to_train_test(fileName, delimiter = ' ', train_size = 0.9, zero_in
     
 def rmse(real_mat, pred_mat, n):
     return np.linalg.norm(real_mat-pred_mat) * sqrt(1./n)
-    
-
+   
 def create_matrix(edgeList, size):
     mat = np.zeros(size)
     
@@ -36,7 +35,7 @@ def create_matrix(edgeList, size):
         mat[i[0]][i[1]] = i[2]
     return mat
           
-def print_results(uMat=None, iMat=None, predMat = None, nFeatures=None, train_data=None, test_data=None, method_name=None, 
+def print_results( predMat = None, nFeatures=None, train_data=None, test_data=None, method_name=None, 
                     nIterations=None, dataset_name=None, method_details=[]):
     results ='\n############# results of %s method: \n'%(method_name) 
     results += '## dataset: %s \n'%(dataset_name)
@@ -46,13 +45,12 @@ def print_results(uMat=None, iMat=None, predMat = None, nFeatures=None, train_da
     for d in method_details:
         results += '## %s: %s \n'%(str(d[0]), str(d[1]))
     
-    if uMat and iMat:
-        predMat = uMat.dot(iMat)
-    
     trainMat = create_matrix(train_data, predMat.shape)
     testMat = create_matrix(test_data, predMat.shape)
     
     #calculating rmse
+    predMat = np.maximum(predMat, 1)
+    predMat = np.minimum(predMat, 5)
     train_rmse = rmse(trainMat, predMat*np.sign(trainMat), len(train_data))
     test_rmse = rmse(testMat, predMat*np.sign(testMat), len(test_data))
     

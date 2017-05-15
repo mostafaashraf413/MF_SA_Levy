@@ -11,10 +11,18 @@ class CollaborativeFiltering_NMF(Annealer):
 
     def __init__(self, V, r_dim, _lambda=1.5, stepSize=0.01):
         self.V = V
+        self.maskV = np.sign(V)
         self.r_dim = r_dim
         self._lambda = _lambda
         self.stepSize = stepSize
         self.size = (np.sum(self.V.shape), self.r_dim)
+        
+        ############test
+        #for i in xrange(self.V.shape[0]):
+        #    for j in xrange(self.V.shape[1]):
+        #        if self.V[i][j] == 0:
+        #            self.V[i][j] = 3.5
+        ################
         
         #calc sigma
         self.sigma = gamma(1+self._lambda) * sin(pi*self._lambda/2.)
@@ -32,14 +40,17 @@ class CollaborativeFiltering_NMF(Annealer):
     
     def energy(self):
         W, H = self.state[:mSize[0]], self.state[mSize[0]:]
-        predV = maskV * W.dot(H.T)
+        predV = self.maskV * W.dot(H.T)
         rmse = utils.rmse(V, predV, len(train))
-        return rmse
+        _energy = rmse
+        #from math import sqrt
+        #_energy = np.linalg.norm((W.dot(H.T))-self.V)*sqrt(1./len(train))
+        return _energy
         
     def generate_state(self):
-        return np.random.uniform(5./r_dim, 0, size = self.size)
-        #r = np.random.rand(self.size)
-        #r = np.random.normal(5./r_dim, .1, size = self.size)
+        return np.random.uniform(1./r_dim, 5./r_dim, size = self.size)
+        #return np.random.rand(self.size[0], self.size[1])
+        #return np.random.normal(5./r_dim, .1, size = self.size)
         
     def mantegna_levy_step(self):
         u = np.random.randn(self.size[0], self.size[1])*self.sigma 
@@ -47,7 +58,7 @@ class CollaborativeFiltering_NMF(Annealer):
         step = u/np.power(v, 1./self._lambda)
         
         step = np.abs(step)
-        step = np.maximum(step, 1)
+        step = np.maximum(step, 2)
         
         return step
     
@@ -61,10 +72,10 @@ if __name__ == '__main__':
     method_name = "SA"
     dataset = ('movelens 100k', '../resources/ml-100k/final_set.csv')
     #dataset = ('movelens 1m', '../resources/ml-1m/ratings.dat')
-    train, test, mSize = utils.read_data_to_train_test(dataset[1], zero_index = False)
+    train, test, mSize = utils.read_data_to_train_test(dataset[1], train_size=.8, zero_index = False)
     V = utils.create_matrix(train, mSize)
-    maskV = np.sign(V)
-    r_dim = 50
+    
+    r_dim = 20
     _lambda = 1.5
     stepSize = 1e-1
     
@@ -80,7 +91,8 @@ if __name__ == '__main__':
     print ''#cf.auto(1)
     
     W, H = state[:mSize[0]], state[mSize[0]:].T
-    sa_results = utils.print_results(predMat = W.dot(H), nFeatures = r_dim, 
+    predMat = W.dot(H)
+    sa_results = utils.print_results(predMat = predMat, nFeatures = r_dim, 
                                     train_data = train, test_data = test, 
                                     method_name = method_name, nIterations = cf.steps, 
                                     dataset_name = dataset[0],
