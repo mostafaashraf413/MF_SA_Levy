@@ -17,13 +17,6 @@ class CollaborativeFiltering_NMF(Annealer):
         self.stepSize = stepSize
         self.size = (np.sum(self.V.shape), self.r_dim)
         
-        ############test
-        #for i in xrange(self.V.shape[0]):
-        #    for j in xrange(self.V.shape[1]):
-        #        if self.V[i][j] == 0:
-        #            self.V[i][j] = 3.5
-        ################
-        
         #calc sigma
         self.sigma = gamma(1+self._lambda) * sin(pi*self._lambda/2.)
         self.sigma /= self._lambda * gamma((1+self._lambda)/2.) * 2**((self._lambda-1)/2.)
@@ -43,12 +36,10 @@ class CollaborativeFiltering_NMF(Annealer):
         predV = self.maskV * W.dot(H.T)
         rmse = utils.rmse(V, predV, len(train))
         _energy = rmse
-        #from math import sqrt
-        #_energy = np.linalg.norm((W.dot(H.T))-self.V)*sqrt(1./len(train))
         return _energy
         
     def generate_state(self):
-        return np.random.uniform(1./r_dim, 5./r_dim, size = self.size)
+        return np.random.uniform(2.5/r_dim, 3.5/r_dim, size = self.size)
         #return np.random.rand(self.size[0], self.size[1])
         #return np.random.normal(5./r_dim, .1, size = self.size)
         
