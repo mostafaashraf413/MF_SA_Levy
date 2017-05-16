@@ -24,7 +24,7 @@ class CollaborativeFiltering_NMF(Annealer):
         ##########################
         
         self.state = self.generate_state()
-        super(CollaborativeFiltering_NMF, self)#.__init__(self.state)  # important!
+        super(CollaborativeFiltering_NMF, self)#.__init__(self.state)
         
     def move(self):
         step = self.mantegna_levy_step()
@@ -39,9 +39,8 @@ class CollaborativeFiltering_NMF(Annealer):
         return _energy
         
     def generate_state(self):
-        return np.random.uniform(2.5/r_dim, 3.5/r_dim, size = self.size)
-        #return np.random.rand(self.size[0], self.size[1])
-        #return np.random.normal(5./r_dim, .1, size = self.size)
+        return np.random.uniform((2.5/r_dim)**.5, (3.5/r_dim)**.5, size = self.size)
+        #return np.random.normal((2.5/r_dim)**.5, 0.1, size = self.size)
         
     def mantegna_levy_step(self):
         u = np.random.randn(self.size[0], self.size[1])*self.sigma 
@@ -49,7 +48,7 @@ class CollaborativeFiltering_NMF(Annealer):
         step = u/np.power(v, 1./self._lambda)
         
         step = np.abs(step)
-        step = np.maximum(step, 2)
+        step = np.maximum(step, 1)
         
         return step
     
@@ -68,7 +67,7 @@ if __name__ == '__main__':
     
     r_dim = 20
     _lambda = 1.5
-    stepSize = 1e-1
+    stepSize = 1e-2
     
     cf = CollaborativeFiltering_NMF(V, r_dim, _lambda=_lambda, stepSize=stepSize)
     cf.steps = 200
@@ -94,3 +93,4 @@ if __name__ == '__main__':
                                     ('Tmin',cf.Tmin)
                                     ]
                                     )
+    del predMat
