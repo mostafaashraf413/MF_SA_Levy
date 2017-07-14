@@ -39,7 +39,7 @@ class CollaborativeFiltering_NMF(Annealer):
         return _energy
         
     def generate_state(self):
-        return np.random.uniform((2.5/r_dim)**.5, (3.5/r_dim)**.5, size = self.size)
+        return np.random.uniform((3./r_dim)**.5, (3.5/r_dim)**.5, size = self.size)
         #return np.random.normal((2.5/r_dim)**.5, 0.1, size = self.size)
         
     def mantegna_levy_step(self):
@@ -47,22 +47,29 @@ class CollaborativeFiltering_NMF(Annealer):
         v = np.absolute(np.random.randn(self.size[0], self.size[1]))
         step = u/np.power(v, 1./self._lambda)
         
+        #sign = np.sign(step)
         step = np.abs(step)
         step = np.maximum(step, 1)
+        #step = step*sign
         
         return step
     
     def levy_grw(self, step=None):
         levy = self._lambda * gamma(self._lambda)*sin(pi*self._lambda/2)/(pi*step**(1+self._lambda))
         return self.stepSize * levy 
-
+        #return self.stepSize * step
         
 if __name__ == '__main__':
     
     method_name = "SA"
-    dataset = ('movelens 100k', '../resources/ml-100k/final_set.csv')
-    #dataset = ('movelens 1m', '../resources/ml-1m/ratings.dat')
-    train, test, mSize = utils.read_data_to_train_test(dataset[1], train_size=.8, zero_index = False)
+    #dataset = ('movelens 100k', '../resources/ml-100k/final_set.csv')
+    #train, test, mSize = utils.read_data_to_train_test(dataset[1], train_size=.8, zero_index = False)
+    
+    
+    dataset = ('movelens 1m', '../resources/ml-1m/ratings.dat')
+    train, _, mSize = utils.read_data_to_train_test(dataset[1]+'.tr', train_size=1., zero_index = False)
+    _, test, mSize = utils.read_data_to_train_test(dataset[1]+'.ts', train_size=0.0, zero_index = False)
+    
     V = utils.create_matrix(train, mSize)
     
     r_dim = 20
@@ -70,15 +77,15 @@ if __name__ == '__main__':
     stepSize = 1e-2
     
     cf = CollaborativeFiltering_NMF(V, r_dim, _lambda=_lambda, stepSize=stepSize)
-    cf.steps = 200
+    cf.steps = 25
     cf.updates = cf.steps/5
-    cf.Tmax=.01
-    cf.Tmin=.001
+    cf.Tmax=25000.0
+    cf.Tmin=2.5
     
     cf.copy_strategy = "method"
     state, e = cf.anneal()
     
-    print ''#cf.auto(1)
+    print ''
     
     W, H = state[:mSize[0]], state[mSize[0]:].T
     predMat = W.dot(H)

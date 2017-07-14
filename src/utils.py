@@ -25,6 +25,15 @@ def read_data_to_train_test(fileName, delimiter = ' ', train_size = 0.9, zero_in
     
     return training_data, test_data, matrix_size
     
+def write_data(fileName, delimiter = ' ', matrixSize = None, data = None):
+    with open(fileName, 'w') as f:
+        f.write(str(matrixSize[0])+delimiter+str(matrixSize[0])+'\n')
+        str_lst = []
+        for d in data:
+            str_lst.append(delimiter.join([str(i) for i in d]))
+        f.write('\n'.join(str_lst))
+        
+            
 def rmse(real_mat, pred_mat, n):
     return np.linalg.norm(real_mat-pred_mat) * sqrt(1./n)
    
