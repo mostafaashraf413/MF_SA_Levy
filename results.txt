@@ -11286,3 +11286,135 @@
 ## training RMSE: 1.117000 
 ## testing RMSE: 1.118455 
 ########################################################
+############# results of SA method: 
+## dataset: movelens 1m 
+## number of latent features: 20 
+## number of training iteratins: 10 
+## stepSize: 0.01 
+## lambda: 1.5 
+## Tmax: 25000.0 
+## Tmin: 2.5 
+## training RMSE: 1.117498 
+## testing RMSE: 1.118874 
+########################################################
+############# results of SA method: 
+## dataset: movelens 1m 
+## number of latent features: 20 
+## number of training iteratins: 5 
+## stepSize: 0.01 
+## lambda: 1.5 
+## Tmax: 25000.0 
+## Tmin: 2.5 
+## training RMSE: 1.126729 
+## testing RMSE: 1.128485 
+########################################################
+############# results of SA method: 
+## dataset: movelens 1m 
+## number of latent features: 20 
+## number of training iteratins: 25 
+## stepSize: 0.01 
+## lambda: 1.5 
+## Tmax: 25000.0 
+## Tmin: 2.5 
+## training RMSE: 1.116760 
+## testing RMSE: 1.118216 
+########################################################
+############# results of SA method: 
+## dataset: movelens 1m 
+## number of latent features: 20 
+## number of training iteratins: 50 
+## stepSize: 0.01 
+## lambda: 1.5 
+## Tmax: 25000.0 
+## Tmin: 2.5 
+## training RMSE: 1.117459 
+## testing RMSE: 1.118809 
+########################################################
+############# results of SA method: 
+## dataset: movelens 1m 
+## number of latent features: 20 
+## number of training iteratins: 100 
+## stepSize: 0.01 
+## lambda: 1.5 
+## Tmax: 25000.0 
+## Tmin: 2.5 
+## training RMSE: 1.117474 
+## testing RMSE: 1.118926 
+########################################################
+############# results of SA method: 
+## dataset: movelens 1m 
+## number of latent features: 20 
+## number of training iteratins: 200 
+## stepSize: 0.01 
+## lambda: 1.5 
+## Tmax: 25000.0 
+## Tmin: 2.5 
+## training RMSE: 1.116655 
+## testing RMSE: 1.118165 
+########################################################
+############# results of SA method: 
+## dataset: movelens 1m 
+## number of latent features: 10 
+## number of training iteratins: 10 
+## stepSize: 0.01 
+## lambda: 1.5 
+## Tmax: 25000.0 
+## Tmin: 2.5 
+## training RMSE: 1.119054 
+## testing RMSE: 1.120686 
+########################################################
+############# results of SA method: 
+## dataset: movelens 1m 
+## number of latent features: 20 
+## number of training iteratins: 10 
+## stepSize: 0.01 
+## lambda: 1.5 
+## Tmax: 25000.0 
+## Tmin: 2.5 
+## training RMSE: 1.117341 
+## testing RMSE: 1.118731 
+########################################################
+############# results of SA method: 
+## dataset: movelens 1m 
+## number of latent features: 30 
+## number of training iteratins: 10 
+## stepSize: 0.01 
+## lambda: 1.5 
+## Tmax: 25000.0 
+## Tmin: 2.5 
+## training RMSE: 1.117276 
+## testing RMSE: 1.118622 
+########################################################
+############# results of SA method: 
+## dataset: movelens 1m 
+## number of latent features: 40 
+## number of training iteratins: 10 
+## stepSize: 0.01 
+## lambda: 1.5 
+## Tmax: 25000.0 
+## Tmin: 2.5 
+## training RMSE: 1.117066 
+## testing RMSE: 1.118556 
+########################################################
+############# results of SA method: 
+## dataset: movelens 1m 
+## number of latent features: 50 
+## number of training iteratins: 10 
+## stepSize: 0.01 
+## lambda: 1.5 
+## Tmax: 25000.0 
+## Tmin: 2.5 
+## training RMSE: 1.117336 
+## testing RMSE: 1.118716 
+########################################################
+############# results of SA method: 
+## dataset: movelens 1m 
+## number of latent features: 20 
+## number of training iteratins: 10 
+## stepSize: 0.01 
+## lambda: 1.5 
+## Tmax: 25000.0 
+## Tmin: 2.5 
+## training RMSE: 1.166825 
+## testing RMSE: 1.168999 
+########################################################

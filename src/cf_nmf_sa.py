@@ -29,6 +29,7 @@ class CollaborativeFiltering_NMF(Annealer):
     def move(self):
         step = self.mantegna_levy_step()
         rw = self.levy_grw(step = step)
+        #rw = np.random.normal(size = self.state.shape)
         self.state += rw
     
     def energy(self):
@@ -77,7 +78,7 @@ if __name__ == '__main__':
     stepSize = 1e-2
     
     cf = CollaborativeFiltering_NMF(V, r_dim, _lambda=_lambda, stepSize=stepSize)
-    cf.steps = 25
+    cf.steps = 10
     cf.updates = cf.steps/5
     cf.Tmax=25000.0
     cf.Tmin=2.5
