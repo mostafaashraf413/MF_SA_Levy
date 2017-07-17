@@ -11418,3 +11418,26 @@
 ## training RMSE: 1.166825 
 ## testing RMSE: 1.168999 
 ########################################################
+############# results of SGD_bias method: 
+## dataset: movelens 1m 
+## number of latent features: 20 
+## number of training iteratins: 10 
+## learning rate: 0.01 
+## regularization factor: 0.02 
+## training RMSE: 0.815860 
+## testing RMSE: 0.871509 
+########################################################
+############# results of WNMF method: 
+## dataset: movelens 1m 
+## number of latent features: 20 
+## number of training iteratins: 10 
+## training RMSE: 0.901683 
+## testing RMSE: 0.943931 
+########################################################
+############# results of ALS method: 
+## dataset: movelens 1m 
+## number of latent features: 20 
+## number of training iteratins: 10 
+## training RMSE: 0.970535 
+## testing RMSE: 1.007472 
+########################################################

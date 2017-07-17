@@ -171,26 +171,64 @@ def collaborative_filtering_SGD(training_data = None, rating_matrix_size = None,
     plt.show()
     return rMat, lMat, biasU, biasI, biasG
 
+################################################################################
+def collaborative_filtering_als(training_data = None, rating_matrix_size = None, 
+                                nLatent_features=None, rf = 0.2, nIterations=10):
+    #V = create_matrix(training_data, rating_matrix_size)
+    V = utils.create_matrix(training_data, rating_matrix_size)
+    for i in xrange(V.shape[0]):
+        for j in xrange(V.shape[1]):
+            V[i][j] = 3.5 if V[i][j] == 0 else V[i][j]
+    W = np.random.rand(rating_matrix_size[0], nLatent_features)
+    H = np.random.rand(rating_matrix_size[1], nLatent_features)
+    NG = np.sign(V)
+    
+    rmse_lst = []
+    for k in xrange(nIterations):
+        #update users matrix
+        HTH = H.T.dot(H)
+        rfI = np.eye(HTH.shape[0]) * rf
 
+        for u in xrange(W.shape[0]):
+            W[u, :] = np.dot(V[u, :].dot(H), np.linalg.inv((HTH + rfI)))
+            
+        #update items matrix
+        WTW = W.T.dot(W)
+        rfI = np.eye(WTW.shape[0]) * rf
+        
+        for i in xrange(H.shape[0]):
+            H[i, :] = np.dot(V[:, i].T.dot(W), np.linalg.inv((WTW + rfI)))
+            
+        #print progress
+        rating_matrix = W.dot(H.T)
+        
+        rmse = utils.rmse(V, rating_matrix*NG, len(training_data))
+        print 'iteration #%d: rmse = %f'%(k+1, rmse)
+        rmse_lst.append(rmse)
+        
+    plt.plot(rmse_lst, label="WNMF")
+    plt.legend()
+    plt.show()
+    
+    return W, H.T
+################################################################################
 
 if __name__ == '__main__':
 
-    dataset = ('movelens 100k', '../resources/ml-100k/final_set.csv')
+    #dataset = ('movelens 100k', '../resources/ml-100k/final_set.csv')
     #dataset = ('movelens 1m', '../resources/ml-1m/ratings.dat')
-    training_data, test_data, matrix_size = utils.read_data_to_train_test(dataset[1], zero_index = False)
+    #training_data, test_data, matrix_size = utils.read_data_to_train_test(dataset[1], zero_index = False)
     
-    #training_data, tmp, matrix_size = read_data_to_train_test("coll_filtering_datasets/ml-100k/ua.base", 
-    #                                    train_size = 1, zero_index=False)
-    #                                    
-    #tmp, test_data, matrix_size = read_data_to_train_test("coll_filtering_datasets/ml-100k/ua.test", 
-    #                                    train_size = 0, zero_index=False)                                  
-    #del tmp
+    dataset = ('movelens 1m', '../resources/ml-1m/ratings.dat')
+    training_data, _, matrix_size = utils.read_data_to_train_test(dataset[1]+'.tr', train_size=1., zero_index = False)
+    _, test_data, matrix_size = utils.read_data_to_train_test(dataset[1]+'.ts', train_size=0.0, zero_index = False)
+    
     
     test_rating_mat = utils.create_matrix(test_data, matrix_size)
     nFeatures = 20
-    nIterations=100
+    nIterations=10
     
-    training_algorithm = 1
+    training_algorithm = 4
     
     #for SGD
     if training_algorithm == 1:
@@ -215,7 +253,7 @@ if __name__ == '__main__':
         W, H = collaborative_filtering_wnmf(training_data = training_data, beta = 1,
                             rating_matrix_size = matrix_size, nLatent_features=nFeatures, nIterations=nIterations)
         rating_matrix = W.dot(H)
-        utils.print_results(uMat = W, iMat = H, nFeatures = nFeatures,
+        utils.print_results(predMat = rating_matrix, nFeatures = nFeatures,
                             train_data = training_data, test_data = test_data,
                             method_name = 'WNMF', nIterations = nIterations, dataset_name = dataset[0])
     
@@ -226,3 +264,12 @@ if __name__ == '__main__':
                 
         rating_matrix = W.dot(H)
         print "testing MSE = ",mean_squared_error_without_bias(test_data, rating_matrix)
+        
+    #for ALS
+    elif training_algorithm == 4:
+        W, H = collaborative_filtering_als(training_data = training_data, rating_matrix_size = matrix_size, 
+                                nLatent_features=nFeatures, rf = 0.2, nIterations=nIterations)
+        rating_matrix = W.dot(H)
+        utils.print_results(predMat = rating_matrix, nFeatures = nFeatures,
+                            train_data = training_data, test_data = test_data,
+                            method_name = 'ALS', nIterations = nIterations, dataset_name = dataset[0])
